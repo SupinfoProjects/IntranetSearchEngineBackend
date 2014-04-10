@@ -82,29 +82,47 @@ On utilisera un indicateur de charge pour chaque VM:
 Notation sur 120/100 pts :
 
 Software (60pts)
+
 	FrontEnd (20pts)
+	
 		-Search (5pts)
+		
 		-Diplay per page (5pts)
+		
 		-Choose number per page (5pts)
+		
 		-Submit URL for Crawl (5pts)
 
 	BackEnd (40 pts)
+	
 		-Maintains a list of "known" resources (1pts)
+		
 		-Crawl periodic (3pts)
+		
 		-Can crawl over HTTP et FTP (3pts)
+		
 		-Follow links to other resources (5pts)
+		
 		-Compute a set of "significant words" for each resources (12pts)
+		
 		-Can store text resources (1pts)
+		
 		-Can perform a search on significant words and full text (5pts)
+		
 		-Return a sorted by score union of these two search (5pts)
+		
 		-Algorithm coefficient against back-end part : x0.8 - x1.3 soit 80% ou 130%
 
 Architecture (50pts)
+
 	-Database en Cluster (25pts)
+	
 	-DNS-baseed webserver Cluster (20pts)
+	
 	-User use a reverse proxy to query the SE (5pts)
 
 Bonus (10pts)
+
 	-bonus features (10pts)
 
 ==============
