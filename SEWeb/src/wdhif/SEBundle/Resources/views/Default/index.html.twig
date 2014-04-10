@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Search Engine{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset("css/style.css") }}">
+{% endblock %}
+
+{% block body %}
+    <h1>Search Engine</h1>
+    <p>Bonjour, je suis le search engine super SWAG!</p>
+    <div class="row">
+        <div class="col-md-4"><p>Toto</p></div>
+        <div class="col-md-4"><p>Toto</p></div>
+        <div class="col-md-4"><p>Toto</p></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
