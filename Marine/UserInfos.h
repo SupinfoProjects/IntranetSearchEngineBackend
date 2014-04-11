@@ -1,9 +1,12 @@
+#ifndef USERINFOS
+#define USERINFOS
+
 #include <string>
 
-static const int authorizedCountriesArrayLen = 1;
-static const int authorizedRegionsArrayLen   = 2;
-
 namespace {
+const int authorizedCountriesArrayLen = 1;
+const int authorizedRegionsArrayLen   = 2;
+
 // Si l'IP de l'utilisateur ne mène pas dans l'un de ces pays; alors rejet de la requête
 std::string authorizedCountries[] = {
     std::string("France")
@@ -42,3 +45,5 @@ private:
 };
 
 }
+
+#endif
