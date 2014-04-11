@@ -3,16 +3,18 @@
 static const int authorizedCountriesArrayLen = 1;
 static const int authorizedRegionsArrayLen   = 2;
 
+namespace {
 // Si l'IP de l'utilisateur ne mène pas dans l'un de ces pays; alors rejet de la requête
-static std::string authorizedCountries[] = {
+std::string authorizedCountries[] = {
     std::string("France")
 };
 
 // Si l'IP de l'utilisateur ne mène pas dans l'une de ces régions; alors rejet de la requête
-static std::string authorizedRegions[] = { 
+std::string authorizedRegions[] = { 
     std::string("Rhône-Alpes");
     std::string("Île-de-France")
 };
+}
 
 namespace authentification {
 
