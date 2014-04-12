@@ -1,4 +1,4 @@
-#include "userinfos.h"
+#include "UserInfos.h"
 #include <fstream>
 
 using namespace std;
@@ -34,8 +34,8 @@ bool UserInfos::parseXmlFile(string _xmlFilePath)
         {
             string openCountryNameAngleBracket = string("<CountryName>");
             string closedCountryNameAngleBracket = string("</CountryName>");
-            pos = line.find(openCountryAngleBracket);
-            len = line.find(closedCountryAngleBracket);
+            pos = line.find(openCountryNameAngleBracket);
+            len = line.find(closedCountryNameAngleBracket);
             if (pos != string::npos && len != string::npos)
                 this->countryName = line.substr(pos + openCountryNameAngleBracket.length(), len - closedCountryNameAngleBracket.length());
         }
@@ -55,12 +55,12 @@ bool UserInfos::parseXmlFile(string _xmlFilePath)
 bool UserInfos::isUserAuthorized()
 {
     bool locatedInGoodCountry = false,
-        locatedInGoodRegion   = false;
-    for (int i = 0; i < authorizedCountriesArrayLen; i++)
-        if (this->countryName == authorizedCountries[i])
+         locatedInGoodRegion  = false;
+    for (auto country : authorizedCountries)
+        if (this->countryName == country)
             locatedInGoodCountry = true;
-    for (int i = 0; i < authorizedRegionsArrayLen; i++)
-        if (this->regionName == authorizedRegions[i])
+    for (auto region : authorizedRegions)
+        if (this->regionName == region)
             locatedInGoodRegion = true;
     return (locatedInGoodCountry && locatedInGoodRegion);
 }

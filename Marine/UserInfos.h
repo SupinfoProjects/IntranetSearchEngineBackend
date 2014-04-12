@@ -4,22 +4,17 @@
 #include <string>
 
 namespace {
-const int authorizedCountriesArrayLen = 1;
-const int authorizedRegionsArrayLen   = 2;
-
 // Si l'IP de l'utilisateur ne mène pas dans l'un de ces pays; alors rejet de la requête
-std::string authorizedCountries[] = {
+const std::string authorizedCountries[] = {
     std::string("France")
 };
-
 // Si l'IP de l'utilisateur ne mène pas dans l'une de ces régions; alors rejet de la requête
-std::string authorizedRegions[] = { 
-    std::string("Rhône-Alpes");
+const std::string authorizedRegions[] = { 
+    std::string("Rhône-Alpes"),
     std::string("Île-de-France")
 };
 }
 
-namespace authentification {
 class UserInfos
 {
 public:
@@ -40,6 +35,5 @@ private:
     std::string countryName;
     std::string regionName;
 };
-}
 
 #endif
