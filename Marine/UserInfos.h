@@ -20,9 +20,6 @@ std::string authorizedRegions[] = {
 }
 
 namespace authentification {
-
-void initializeDatabase();
-
 class UserInfos
 {
 public:
@@ -43,7 +40,6 @@ private:
     std::string countryName;
     std::string regionName;
 };
-
 }
 
 #endif
