@@ -4,18 +4,80 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" type="text/css" href="{{ asset("css/style.css") }}">
+    <link href="{{ asset("css/bootstrap.css") }}" rel="stylesheet" media="screen">
+    <link href="{{ asset("css/bootstrap-responsive.css") }}" rel="stylesheet" media="screen">
+    <style type="text/css">
+        body{
+            background-color: #111;
+        }
+        .jumbotron{
+            text-align: center;
+            color: #eeeeee;
+            background-color: #111;
+        }
+        #scene{
+            margin: 0 auto;
+            padding: 0;
+        }
+        .layer:nth-child(1) {
+            opacity: 0.15;
+        }
+        .layer:nth-child(2) {
+            opacity: 0.30;
+        }
+        .layer:nth-child(3) {
+            opacity: 0.45;
+        }
+        .layer:nth-child(4) {
+            opacity: 0.60;
+        }
+        .layer:nth-child(5) {
+            opacity: 0.75;
+        }
+        .layer:nth-child(6) {
+            opacity: 0.90;
+        }
+        .scenediv{
+            margin: 0 auto;
+            padding: 0;
+            max-width: 500px;
+        }
+        img {
+            display: block;
+            width: 100%;
+        }
+
+    </style>
+    <script type="application/javascript"></script>
 {% endblock %}
 
 {% block body %}
-    <h1>Search Engine</h1>
-    <p>Bonjour, je suis le search engine super SWAG!</p>
-    <div class="row">
-        <div class="col-md-4"><p>Toto</p></div>
-        <div class="col-md-4"><p>Toto</p></div>
-        <div class="col-md-4"><p>Toto</p></div>
+    <div class="jumbotron">
+        <h1>Intranet Search Engine</h1>
+        <p class="lead">The new Search Engine System from SoluDev</p>
+        <p class="lead">Starting Soon! Stay Tuned &#9786</p>
+        <a class="btn btn-large btn-success" href="#result">Read More!</a>
+    </div>
+    <div class="scenediv">
+        <ul id="scene">
+            <li class="layer" data-depth="0.00"><img src="{{ asset("images/layer1.png") }}"></li>
+            <li class="layer" data-depth="0.20"><img src="{{ asset("images/layer2.png") }}"></li>
+            <li class="layer" data-depth="0.40"><img src="{{ asset("images/layer3.png") }}"></li>
+            <li class="layer" data-depth="0.60"><img src="{{ asset("images/layer4.png") }}"></li>
+            <li class="layer" data-depth="0.80"><img src="{{ asset("images/layer5.png") }}"></li>
+            <li class="layer" data-depth="1.00"><img src="{{ asset("images/layer6.png") }}"></li>
+        </ul>
     </div>
 {% endblock %}
 
 {% block javascripts %}
+    <script src="{{ asset("js/parallax.js") }}"></script>
+    <script>
+
+        // Pretty simple huh?
+        var scene = document.getElementById('scene');
+        var parallax = new Parallax(scene);
+
+    </script>
     {{ parent() }}
 {% endblock %}
