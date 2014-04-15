@@ -1,4 +1,3 @@
-
 # Compilation du programme : taper "make"
 Marine : main.o UserInfos.o
 	g++ -std=c++0x -o $@ $^
@@ -8,7 +7,7 @@ main.o: main.cpp UserInfos.h
 # Création de UserInfos.o
 UserInfos.o : UserInfos.cpp UserInfos.h
 	g++ -std=c++0x -o UserInfos.o -c UserInfos.cpp
-# Lance le programme
+# Lance le programme : taper "make run"
 run: Marine
 	./Marine
 # Supprime tous les fichiers
