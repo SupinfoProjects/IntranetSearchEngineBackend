@@ -10,7 +10,7 @@ UserInfos.o : UserInfos.cpp UserInfos.h
 # Lance le programme : taper "make run"
 run: Marine
 	./Marine
-# Supprime tous les fichiers
+# Supprime tous les fichiers : tape "make clean"
 clean:
 	rm -f *.o *.h.gch
 	rm -f Marine
