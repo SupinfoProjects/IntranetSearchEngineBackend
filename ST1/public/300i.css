@@ -1,0 +1,98 @@
+body{
+    background-image: url(../img/300i.png);
+}
+@font-face {
+    font-family: space age;
+    src: url(space%20age.ttf);
+}
+#title{
+    position: relative;
+    width: 700px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "space age";
+    color: white;
+    text-shadow: white 0px 0px 6px;
+
+}
+#content{
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    width: 90%;
+    height: 800px;
+    border: solid;
+    border-color: white;
+    border-radius: 10px;
+    box-shadow: white 0 0 20px;
+}
+
+#desc{
+    font-family: "space age";
+    color: white;
+    position: relative;
+    width: 750px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#video{
+    /*display: inline-block;*/
+    margin-top: 100px;
+    width: 560px;
+    height: 320px;
+    box-shadow: white 0 0 20px;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media screen and (min-width: 1900px ){
+    #img300{
+        position: relative;
+        float: right;
+        margin-right: 450px;
+        -moz-animation: move 3s ;
+        -webkit-animation: move 3s ;
+        -webkit-animation-name: move;
+        -moz-animation-name: move;
+        -o-animation-name: move;
+        animation-name: move;
+        -webkit-animation-duration: 3s;
+        -moz-animation-duration: 3s;
+        -o-animation-duration: 3s;
+        animation-duration: 3s;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    #img300{
+        position: relative;
+        float: right;
+        -moz-animation: move 3s;
+        -webkit-animation: move 3s;
+    }
+}
+
+@keyframes move
+{
+0%{
+    right: -150%;
+}
+100%{
+    right: 0%;
+}
+}
+
+@-webkit-keyframes move
+{
+    0%{
+        right: -150%;
+    }
+    100%{
+        right: 0%;
+    }
+}
