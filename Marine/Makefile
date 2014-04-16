@@ -1,5 +1,5 @@
 # Compilation du programme : taper "make"
-Marine : main.o UserInfos.o
+Marine: main.o UserInfos.o
 	g++ -std=c++0x -o $@ $^
 # Création de main.o
 main.o: main.cpp UserInfos.h
