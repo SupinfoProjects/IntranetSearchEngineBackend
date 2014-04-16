@@ -5,7 +5,7 @@ Marine: main.o UserInfos.o
 main.o: main.cpp UserInfos.h
 	g++ -std=c++0x -o main.o -c main.cpp
 # Création de UserInfos.o
-UserInfos.o : UserInfos.cpp UserInfos.h
+UserInfos.o: UserInfos.cpp UserInfos.h
 	g++ -std=c++0x -o UserInfos.o -c UserInfos.cpp
 # Lance le programme : taper "make run"
 run: Marine
