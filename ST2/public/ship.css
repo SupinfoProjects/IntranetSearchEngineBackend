@@ -1,0 +1,22 @@
+body{
+    background-image: url(../img/ocean.jpg);
+}
+
+table{
+    border: medium solid darkblue;
+    border-collapse: collapse;
+    width: 50%;
+    margin: auto;
+}
+td, th{
+    text-align: center;
+    font-family: arial black;
+    border: thin solid black;
+}
+#navire img{
+    width: 300px;
+    height: 200px;
+}
+#titre {
+    text-align: center;
+}
