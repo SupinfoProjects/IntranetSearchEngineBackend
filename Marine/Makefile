@@ -2,7 +2,7 @@
 Marine: main.o UserInfos.o
 	g++ -std=c++0x -o $@ $^
 
-# Création de la lib statique
+# Création de la lib statique : taper "make lib"
 lib: main.o UserInfos.o
 	ar -q marine.a main.o UserInfos.o
 
