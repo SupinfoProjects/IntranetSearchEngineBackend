@@ -19,5 +19,5 @@ run: Marine
 clean:
 	rm -f *.o *.h.gch
 	rm -f Marine
-	rm -f marine.a
+
 
