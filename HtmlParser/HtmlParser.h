@@ -16,7 +16,6 @@ class HtmlParser
 public:
 	HtmlParser(std::string url);
 	HtmlParser() : HtmlParser("") {}
-	int getValueOf(WebPage page);
 	int getValueOf(std::string url);
 private:
 };
