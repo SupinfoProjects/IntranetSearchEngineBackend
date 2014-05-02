@@ -18,6 +18,7 @@ public:
 	HtmlParser() : HtmlParser("") {}
 	int getValueOf(std::string url);
 private:
+	std::vector<WebPage> pages;
 };
 
 #endif
