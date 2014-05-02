@@ -8,7 +8,7 @@
 #include "WebPage.h"
 
 namespace {
-	std::map keywords = {};
+	std::map<std::string, int> keywords = {};
 }
 
 class HtmlParser
