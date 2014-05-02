@@ -8,7 +8,7 @@ struct WebPage {
 	std::string url;
 	std::string lastUpdate;
 	std::vector<std::string> keywords;
-	int value;
+	int mark;
 };
 
 #endif
