@@ -14,11 +14,10 @@ namespace {
 class HtmlParser
 {
 public:
-	HtmlParser(std::string url);
-	HtmlParser() : HtmlParser("") {}
+	HtmlParser(std::string url = "");
 	int getValueOf(std::string url);
 private:
-	std::vector<WebPage> pages;
+	//std::vector<WebPage> pages;
 };
 
 #endif
