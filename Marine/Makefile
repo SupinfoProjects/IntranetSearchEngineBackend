@@ -4,7 +4,7 @@ Marine: main.o UserInfos.o
 
 # Création de la lib statique : taper "make lib"
 lib: main.o UserInfos.o
-	ar -q marine.a main.o UserInfos.o
+	ar -q marine.a UserInfos.o
 
 # Création de main.o
 main.o: main.cpp UserInfos.h
