@@ -14,9 +14,8 @@ int HtmlParser::getValueOf(string url)
 {
 	string query = "wget " + url;
 	system(query.c_str());
-	ifstream file("index.html");  //Ouverture d'un fichier en lecture
-	if (!file)
-		return -1;
+	ifstream file("index.html");  // Ouverture d'un fichier en lecture
+	if (!file) return -1;
 	string line;
 	int mark = 0;
 	while (getline(file, line))
@@ -35,7 +34,7 @@ int HtmlParser::getValueOf(string url)
 			if (line.substr(i, 4) == "<h2>")
 				mark += 2;
 			if (line.substr(i, 4) == "<h3>"
-				|| line.substr(i,4) == "<h4>"
+				|| line.substr(i, 4) == "<h4>"
 				|| line.substr(i, 4) == "<h5>"
 				|| line.substr(i, 4) == "<h6>")
 				mark++;
