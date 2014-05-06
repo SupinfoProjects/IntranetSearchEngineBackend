@@ -1,9 +1,7 @@
 #include "HtmlParser.h"
 
-#include <iostream>
-#include <algorithm>    // std::count_if
-#include <exception>
 #include <fstream>
+#include <iostream>
 #include <string>
 
 using namespace std;
