@@ -5,8 +5,6 @@
 #include <string>
 #include <vector>
 
-#include "WebPage.h"
-
 namespace {
 	//std::map<std::string, int> keywords = {};
 }
