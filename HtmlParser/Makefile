@@ -4,7 +4,7 @@ HtmlParser: main.o HtmlParser.o
 
 # Création de la lib statique : taper "make lib"
 lib: main.o HtmlParser.o
-	ar -q marine.a HtmlParser.o
+	ar -q htmlparser.a HtmlParser.o
 
 # Création de main.o
 main.o: main.cpp HtmlParser.h
@@ -22,5 +22,5 @@ run: HtmlParser
 clean:
 	rm -f *.o *.h.gch
 	rm -f HtmlParser
-	rm -f HtmlParser.a
+	rm -f *.a
 
