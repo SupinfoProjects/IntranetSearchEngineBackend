@@ -5,12 +5,11 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
 HtmlParser::HtmlParser(std::string url)
 {
 }
 
-int HtmlParser::getValueOf(std::string url, std::vector<string> keywords)
+int HtmlParser::getValueOf(std::string url, std::vector<std::string> keywords)
 {
 	std::string query = "wget " + url;
 	system(query.c_str());
@@ -29,6 +28,7 @@ int HtmlParser::getValueOf(std::string url, std::vector<string> keywords)
 			while ((substring = line.find(keywords[i])) != std::string::npos)
 			{
 				mark += 5;
+				line = line.substr(++substring);
 			}
 		}
 		if (line.size() < 3) continue;
