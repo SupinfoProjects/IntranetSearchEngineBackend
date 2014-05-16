@@ -8,7 +8,6 @@ int main(int argc, char *argv[])
 	for (int i(0); i < argc; i++)
 	{
 		keywords.push_back(argv[i]);
-		std::cout << keywords[i] << std::endl;
 	}
 	std::cout << parser.getValueOf("fr.openclassrooms.com", keywords) << std::endl;
 }
