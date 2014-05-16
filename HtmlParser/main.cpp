@@ -4,5 +4,7 @@ using namespace std;
 int main()
 {
 	HtmlParser parser;
-	cout << parser.getValueOf("fr.openclassrooms.com") << endl;
+	vector<string> v;
+	v.push_back("prout");
+	cout << parser.getValueOf("fr.openclassrooms.com", v) << endl;
 }

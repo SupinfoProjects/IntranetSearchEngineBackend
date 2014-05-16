@@ -6,21 +6,31 @@
 #include <string>
 
 using namespace std;
-
-HtmlParser::HtmlParser(string url)
+HtmlParser::HtmlParser(std::string url)
 {
 }
 
-int HtmlParser::getValueOf(string url)
+int HtmlParser::getValueOf(std::string url, std::vector<string> keywords)
 {
-	string query = "wget " + url;
+	std::string query = "wget " + url;
 	system(query.c_str());
-	ifstream file("index.html");  // Ouverture d'un fichier en lecture
+	std::ifstream file("index.html");
 	if (!file) return -1;
-	string line;
+	std::string line;
 	int mark = 0;
-	while (getline(file, line))
+	while (std::getline(file, line))
 	{
+		for (int i = 0; i < keywords.size(); ++i)
+		{
+			std::string word = keywords[i];
+			if (line.find(word) < word.size())
+				continue;
+			int substring(0);
+			while ((substring = line.find(keywords[i])) != std::string::npos)
+			{
+				mark += 5;
+			}
+		}
 		if (line.size() < 3) continue;
 		for (int i = 0; i < line.size() - 3; i++)
 		{
