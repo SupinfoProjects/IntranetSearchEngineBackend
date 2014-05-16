@@ -25,3 +25,5 @@ clean:
 	rm -f *.a
 	rm -f *~
 	rm -f *.out
+	rm -f *.html
+	rm -f *.html.*
