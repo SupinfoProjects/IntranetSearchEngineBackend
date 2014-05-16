@@ -17,8 +17,19 @@ int HtmlParser::getValueOf(std::string url, std::vector<std::string> keywords)
 	if (!file) return -1;
 	std::string line;
 	int mark = 0;
+	for (int i = 0; i < keywords.size(); ++i)
+	{
+		for (int x = 0; x < keywords[i].length(); ++x)
+		{
+			keywords[i][x] = std::tolower(keywords[i][x]);
+		}
+	}
 	while (std::getline(file, line))
 	{
+		for (int i = 0; i < line.length(); ++i)
+		{
+			line[i] = std::tolower(line[i]);
+		}
 		for (int i = 0; i < keywords.size(); ++i)
 		{
 			std::string word = keywords[i];
