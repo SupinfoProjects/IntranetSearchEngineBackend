@@ -1,7 +1,6 @@
 #ifndef HTMLPARSER
 #define HTMLPARSER
 
-#include <map>
 #include <string>
 #include <vector>
 
