@@ -7,8 +7,8 @@
 class HtmlParser
 {
 public:
-	HtmlParser(std::string url = "");
-	int getValueOf(std::string url, std::vector<std::string> keywords);
+    HtmlParser(std::string url = "");
+    int getValueOf(std::string url, std::vector<std::string> keywords);
 private:
 
 };
