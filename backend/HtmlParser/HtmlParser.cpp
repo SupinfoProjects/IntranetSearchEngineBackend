@@ -44,20 +44,29 @@ int HtmlParser::getValueOf(std::string url, std::vector<std::string> keywords)
 		for (int i = 0; i < line.size() - 3; i++)
 		{
 			if (line.substr(i, i + 3) == "<p>")
+			{
 				mark += 3;
+			}
 		}
-		if (line.size() < 4) continue;
+		if (line.size() < 4)
+		{
+			continue;
+		}
 		for (int i = 0; i < line.size() - 4; i++)
 		{
 			if (line.substr(i, 4) == "<h1>")
+			{
 				mark += 5;
+			}
 			if (line.substr(i, 4) == "<h2>")
+			{
 				mark += 2;
-			if (line.substr(i, 4) == "<h3>"
-				|| line.substr(i, 4) == "<h4>"
-				|| line.substr(i, 4) == "<h5>"
-				|| line.substr(i, 4) == "<h6>")
+			}
+			if (line.substr(i, 4) == "<h3>" || line.substr(i, 4) == "<h4>"
+				|| line.substr(i, 4) == "<h5>" 	|| line.substr(i, 4) == "<h6>")
+			{
 				mark++;
+			}
 		}
 	}
 	system("rm index.html");
