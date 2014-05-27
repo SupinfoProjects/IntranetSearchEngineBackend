@@ -5,9 +5,9 @@ using namespace std;
 
 UserInfos::UserInfos(string _xmlFilePath)
 {
-    ipAddress = 
-        countryName =
-        regionName  = "Null";
+    ipAddress   = "Null";
+    countryName = "Null";
+    regionName  = "Null";
     if (_xmlFilePath != "")
     {
         parseXmlFile(_xmlFilePath);
