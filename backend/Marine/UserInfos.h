@@ -4,8 +4,7 @@
 #include <string>
 
 namespace {
-// Si l'I
-de l'utilisateur ne mène pas dans l'un de ces pays; alors rejet de la requête
+// Si l'IP de l'utilisateur ne mène pas dans l'un de ces pays; alors rejet de la requête
 const std::string authorizedCountries[] =
 {
     std::string("France")
