@@ -8,7 +8,9 @@ int main(int argc, char *argv[])
 {
     string command = "wget https://freegeoip.net/xml";
     if (argc > 1)
+    {
         command += argv[1];
+    }
     command += " --no-check-certificate --output-document=data.xml";
     system(command.c_str());
     UserInfos infos("data.xml");
@@ -19,7 +21,9 @@ int main(int argc, char *argv[])
     cout << "Country : " <<  infos.getCountryName() << endl;
     cout << "Region : " <<  infos.getRegionName() << endl;
     if (infos.isUserAuthorized())
+    {
         cout << "Utilisateur autorisé" << endl;
+    }
     cout << "================================" << endl;
     return 0;
 }
