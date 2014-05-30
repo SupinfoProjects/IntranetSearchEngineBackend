@@ -1,5 +1,4 @@
 {% extends '::base.html.twig' %}
-
 {% block title %}Search Engine{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
@@ -8,12 +7,12 @@
     <link href="{{ asset("css/bootstrap-responsive.css") }}" rel="stylesheet" media="screen">
     <style type="text/css">
         body{
-            background-color: #111;
+            background-color: #252525;
         }
         .jumbotron{
             text-align: center;
             color: #eeeeee;
-            background-color: #111;
+            background-color: #252525;
         }
         #scene{
             margin: 0 auto;
@@ -40,23 +39,45 @@
         .scenediv{
             margin: 0 auto;
             padding: 0;
-            max-width: 500px;
+            max-width: 300px;
         }
         img {
             display: block;
             width: 100%;
         }
-
+        #search {
+            margin-top: 3%;
+            padding: 0;
+        }
+        #inputSearch {
+            border-radius: 5px 5px;
+            border-color: #5cb85c;
+            border-width: 3px;
+            height: 34px;
+            color: black;
+            width: 700px;
+        }
+        @media screen and (max-width: 850px) {
+            #inputSearch {
+                border-radius: 5px 5px;
+                border-color: #5cb85c;
+                border-width: 3px;
+                height: 34px;
+                color: black;
+                width: 300px;
+            }
+        }
     </style>
     <script type="application/javascript"></script>
 {% endblock %}
-
 {% block body %}
     <div class="jumbotron">
         <h1>Intranet Search Engine</h1>
         <p class="lead">The new Search Engine System from SoluDev</p>
-        <p class="lead">Starting Soon! Stay Tuned &#9786</p>
-        <a class="btn btn-large btn-success" href="#result">Read More!</a>
+        <form id="search">
+            <input id="inputSearch" formmethod="post" placeholder="Entrez votre recherche..." type="text" style="">
+            <a class="btn btn-large btn-success" href="#blank">Go!</a>
+        </form>
     </div>
     <div class="scenediv">
         <ul id="scene">
@@ -69,15 +90,11 @@
         </ul>
     </div>
 {% endblock %}
-
 {% block javascripts %}
     <script src="{{ asset("js/parallax.js") }}"></script>
     <script>
-
-        // Pretty simple huh?
         var scene = document.getElementById('scene');
         var parallax = new Parallax(scene);
-
     </script>
     {{ parent() }}
 {% endblock %}
