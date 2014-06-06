@@ -10,11 +10,17 @@
 
 XmlParser::XmlParser(const std::string& _filename) : filename(_filename)
 {
-	mark = 0;
+	parse_xml_file(filename);
 }
 
-void XmlParser::ParseXmlFile()
+void XmlParser::parse_xml_file(const std::string& _filename)
 {
+	if (_filename != "")
+	{
+		filename = _filename;
+		//system("rm index.html");
+		//sysem(std::string("wget " + filename).c_str());
+	}
 	std::ifstream stream(filename);
 	std::string line;
 	if (!stream)
@@ -29,40 +35,43 @@ void XmlParser::ParseXmlFile()
 		}
 		if (line.find("<a href") != std::string::npos)
 		{
-			AddNewUrl(line);
+			add_new_url(line);
 		}
 	}
+	set_mark_of(filename);
 }
 
-int XmlParser::SetMarkOf(const std::string& url)
+void XmlParser::set_mark_of(const std::string& url)
 {
 	std::ifstream stream(filename);
 	std::string line;
-	Url url;
 	if (!stream)
 	{
 		throw std::exception(std::string("Cannot open file " + filename).c_str());
 	}
-	for (auto tag : tags)
+	mark = 0;
+	while (std::getline(stream, line))
 	{
-		int first{}, second{};
-		if ((first = line.find(tag.first())) != std::string::npos
-			&& (second = line.find(tag.second())) != std::string::npos)
+		for (auto tag : tags)
 		{
-			std::string sub = line.substr(first + tag.first().size(), second);
-			std::string keyword;
-			for (int i = 0; i < sub.size() - tag.second().size(); i++)
+			int first{}, second{};
+			if ((first = line.find(tag.first())) != std::string::npos
+				&& (second = line.find(tag.second())) != std::string::npos)
 			{
-				keyword += sub[i];
+				std::string sub = line.substr(first + tag.first().size(), second);
+				std::string keyword;
+				for (int i = 0; i < sub.size() - tag.second().size(); i++)
+				{
+					keyword += sub[i];
+				}
+				kwords.push_back(keyword);
+				mark += tag.getMark();
 			}
-			//keywords.push_back(Tag(keyword, tag.getMark()));
-			keywords.push_back(keyword);
-			mark += tag.getMark();
 		}
 	}
 }
 
-void XmlParser::AddNewUrl(const std::string& line)
+void XmlParser::add_new_url(const std::string& line)
 {
 	std::regex regex("^(http|https)://[a-z0-9\-\_\\.]*.(com|fr|org|php|htm|html)(/*)[a-z0-9\-\_\\./]*$");
 	std::string href = "<a href=\"";
@@ -85,7 +94,7 @@ void XmlParser::AddNewUrl(const std::string& line)
 	}
 	if (std::regex_match(url, regex))
 	{
-		Url tmp = { url, 0 };
+		std::string tmp;
 		for (auto it = urls.begin(); it != urls.end(); it++)
 		{
 			if (tmp == *it)
@@ -93,6 +102,6 @@ void XmlParser::AddNewUrl(const std::string& line)
 				return;
 			}
 		}
-		urls.push_back(tmp);
+		urls.push_back(url);
 	}
 }
