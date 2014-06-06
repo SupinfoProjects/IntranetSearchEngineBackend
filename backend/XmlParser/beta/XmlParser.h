@@ -27,8 +27,8 @@ public:
 
 	// getters
 	std::vector<std::string> get_keywords() const { return kwords; }
-	std::vector<std::string> get_urls() const { return urls; }
-	int get_mark() const { return mark; }
+	std::vector<std::string> get_urls()     const { return urls;   }
+	int                      get_mark()     const { return mark;   }
 
 private:
 	std::string url;
