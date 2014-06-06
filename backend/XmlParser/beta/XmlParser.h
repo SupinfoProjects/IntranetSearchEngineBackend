@@ -23,7 +23,7 @@ namespace
 class XmlParser
 {
 public:
-	XmlParser(const std::string& _filename);
+	XmlParser(const std::string& _url);
 
 	// getters
 	std::vector<std::string> get_keywords() const { return kwords; }
@@ -31,7 +31,7 @@ public:
 	int get_mark() const { return mark; }
 
 private:
-	std::string filename;
+	std::string url;
 	std::vector<std::string> kwords;
 	std::vector<std::string> urls;
 	int mark;
