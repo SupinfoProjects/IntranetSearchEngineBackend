@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "Tag.h"
-#include "Url.h"
 
 namespace
 {
@@ -25,15 +24,20 @@ class XmlParser
 {
 public:
 	XmlParser(const std::string& _filename);
-	void ParseXmlFile();
-	void AddNewUrl(const std::string& line);
-	int SetMarkOf(const std::string& url);
-	int mark;
-	std::vector<std::string> keywords;
-	/*std::vector<std::string> ks;
-	std::vector<std::string> urls;*/
-	std::vector<Url> urls;
+
+	// getters
+	std::vector<std::string> get_keywords() const { return kwords; }
+	std::vector<std::string> get_urls() const { return urls; }
+	int get_mark() const { return mark; }
 
 private:
 	std::string filename;
+	std::vector<std::string> kwords;
+	std::vector<std::string> urls;
+	int mark;
+
+	//
+	void parse_xml_file(const std::string& _filemane = "");
+	void add_new_url(const std::string& line);
+	void set_mark_of(const std::string& url);
 };
