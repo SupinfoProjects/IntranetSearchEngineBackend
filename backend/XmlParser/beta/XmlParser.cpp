@@ -8,24 +8,24 @@
 #include <regex>
 #include <string>
 
-XmlParser::XmlParser(const std::string& _filename) : filename(_filename)
+XmlParser::XmlParser(const std::string& _url) : url(_url)
 {
-	parse_xml_file(filename);
+	parse_xml_file(url);
 }
 
-void XmlParser::parse_xml_file(const std::string& _filename)
+void XmlParser::parse_xml_file(const std::string& _url)
 {
-	if (_filename != "")
+	if (_url != "")
 	{
-		filename = _filename;
+		url = _url;
 		//system("rm index.html");
-		//sysem(std::string("wget " + filename).c_str());
+		//system(std::string("wget " + filename).c_str());
 	}
-	std::ifstream stream(filename);
+	std::ifstream stream("index.html");
 	std::string line;
 	if (!stream)
 	{
-		throw std::exception(std::string("Cannot open file " + filename).c_str());
+		throw std::exception(std::string("Cannot open file " + url).c_str());
 	}
 	while (std::getline(stream, line))
 	{
@@ -38,16 +38,16 @@ void XmlParser::parse_xml_file(const std::string& _filename)
 			add_new_url(line);
 		}
 	}
-	set_mark_of(filename);
+	set_mark_of(url);
 }
 
 void XmlParser::set_mark_of(const std::string& url)
 {
-	std::ifstream stream(filename);
+	std::ifstream stream("index.html");
 	std::string line;
 	if (!stream)
 	{
-		throw std::exception(std::string("Cannot open file " + filename).c_str());
+		throw std::exception(std::string("Cannot open file " + url).c_str());
 	}
 	mark = 0;
 	while (std::getline(stream, line))
