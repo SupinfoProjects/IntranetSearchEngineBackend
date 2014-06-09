@@ -11,13 +11,17 @@
 XmlParser::XmlParser(const std::string& _url) : url(_url)
 {
 	parse_xml_file(url);
+	dname = "http://fr.siteduzero.com";
 }
 
 void XmlParser::parse_xml_file(const std::string& _url)
 {
+	urls.clear();
+	kwords.clear();
 	if (_url != "")
 	{
 		url = _url;
+		// Décommenter pour Linux
 		//system("rm index.html");
 		//system(std::string("wget " + filename).c_str());
 	}
@@ -102,6 +106,9 @@ void XmlParser::add_new_url(const std::string& line)
 				return;
 			}
 		}
-		urls.push_back(url);
+		if (url.substr(0, dname.size()) == dname)
+		{
+			urls.push_back(url);
+		}
 	}
 }
