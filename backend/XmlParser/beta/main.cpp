@@ -1,9 +1,9 @@
 #include <fstream>
 #include <iostream>
 #include <regex>
-#include "XmlParserh.h"
+#include "XmlParser.h"
 
-int main(int argc, char *argv)
+int main(int argc, char **argv)
 {
 	XmlParser parser("oc.html");
 	//std::cout << parser.mark;

@@ -1,4 +1,4 @@
-#include "XmlParserh.h"
+#include "XmlParser.h"
 
 // std
 #include <cstdlib>
@@ -20,7 +20,7 @@ void XmlParser::parse_xml_file(const std::string& _url)
 	kwords.clear();
 	if (_url != "")
 	{
-		url = _url;
+		//url = _url;
 		// Décommenter pour Linux
 		//system("rm index.html");
 		//system(std::string("wget " + filename).c_str());
@@ -29,7 +29,8 @@ void XmlParser::parse_xml_file(const std::string& _url)
 	std::string line;
 	if (!stream)
 	{
-		throw std::exception(std::string("Cannot open file " + url).c_str());
+		//throw std::exception(std::string("Cannot open file " + url).c_str());*
+		std::cout << "pb ouverture index.html";
 	}
 	while (std::getline(stream, line))
 	{
@@ -51,7 +52,7 @@ void XmlParser::set_mark_of(const std::string& url)
 	std::string line;
 	if (!stream)
 	{
-		throw std::exception(std::string("Cannot open file " + url).c_str());
+		//throw std::exception(std::string("Cannot open file " + url).c_str());
 	}
 	mark = 0;
 	while (std::getline(stream, line))
@@ -77,7 +78,7 @@ void XmlParser::set_mark_of(const std::string& url)
 
 void XmlParser::add_new_url(const std::string& line)
 {
-	std::regex regex("^(http|https)://[a-z0-9\-\_\\.]*.(com|fr|org|php|htm|html)(/*)[a-z0-9\-\_\\./]*$");
+	//std::regex regex("^[http|https]?://[^/\n]+{/[^\\/%\n]+}*{/?\?[^&\n]+{&[^&\n]+}*}?/?$");
 	std::string href = "<a href=\"";
 	int startpos = line.find(href) + href.size();
 	int endpos = line.find("\"");
@@ -87,16 +88,17 @@ void XmlParser::add_new_url(const std::string& line)
 		return;
 	}
 	std::string url = line.substr(startpos, endpos);
-	while (url[url.size() - 1] == '/')
+	while (url[url.size() - 1] == '/' || url[url.size() - 1] == '#')
 	{
-		std::string tmp;
+		std::string tmp = "";
 		for (int i = 0; i < url.size() - 1; i++)
 		{
 			tmp += url[i];
 		}
 		url = tmp;
+		//std::cout << "prout";
 	}
-	if (std::regex_match(url, regex))
+	if (url.find(dname) != std::string::npos) //std::regex_match(url, regex))
 	{
 		std::string tmp;
 		for (auto it = urls.begin(); it != urls.end(); it++)

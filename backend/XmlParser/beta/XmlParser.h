@@ -1,4 +1,5 @@
-#pragma once
+#ifndef XML_PARSER
+#define XML_PARSER
 
 #include <initializer_list>
 #include <string>
@@ -42,3 +43,5 @@ private:
 	void add_new_url(const std::string& line);
 	void set_mark_of(const std::string& url);
 };
+
+#endif // XML_PARSER defined

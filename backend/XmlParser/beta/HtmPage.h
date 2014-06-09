@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HTML_PAGE
+#define HTML_PAGE
 
 #include <string>
 #include <vector>
@@ -14,3 +15,5 @@ struct HtmlPage : Serializable
 	std::vector<std::string> urls;
 	int mark;
 };
+
+#endif

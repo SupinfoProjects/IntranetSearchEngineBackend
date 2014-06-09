@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TAG
+#define TAG
 
 #include <map>
 #include <string>
@@ -15,3 +16,5 @@ private:
 	std::string tag;
 	int mark;
 };
+
+#endif
