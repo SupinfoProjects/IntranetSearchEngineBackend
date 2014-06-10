@@ -8,8 +8,6 @@
 #include <regex>
 #include <string>
 
-std::string dname;
-
 XmlParser::XmlParser(const std::string& _url) : url(_url)
 {
 	dname = "http://fr.openclassrooms.com";
@@ -31,8 +29,7 @@ void XmlParser::parse_xml_file(const std::string& _url)
 	std::string line;
 	if (!stream)
 	{
-		//throw std::exception(std::string("Cannot open file " + url).c_str());*
-		std::cout << "pb ouverture index.html";
+		std::cout << "Problème d'ouverture index.html";
 	}
 	while (std::getline(stream, line))
 	{
@@ -54,7 +51,7 @@ void XmlParser::set_mark_of(const std::string& _url)
 	std::string line;
 	if (!stream)
 	{
-		//throw std::exception(std::string("Cannot open file " + url).c_str());
+		std::cout << "Problème d'ouverture index.html";
 	}
 	mark = 0;
 	while (std::getline(stream, line))
@@ -80,7 +77,6 @@ void XmlParser::set_mark_of(const std::string& _url)
 
 void XmlParser::add_new_url(const std::string& line)
 {
-	//std::regex regex("^[http|https]?://[^/\n]+{/[^\\/%\n]+}*{/?\?[^&\n]+{&[^&\n]+}*}?/?$");
 	std::string href = "<a href=\"";
 	int startpos = line.find(href) + href.size();
 	int endpos = line.find("\"");
@@ -98,7 +94,6 @@ void XmlParser::add_new_url(const std::string& line)
 			tmp += _url[i];
 		}
 		_url = tmp;
-		//std::cout << "prout";
 	}
 	for (auto u : urls)
 	{
