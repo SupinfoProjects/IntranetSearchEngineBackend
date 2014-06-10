@@ -8,10 +8,12 @@
 #include <regex>
 #include <string>
 
+std::string dname;
+
 XmlParser::XmlParser(const std::string& _url) : url(_url)
 {
+	dname = "http://fr.openclassrooms.com";
 	parse_xml_file(url);
-	dname = "http://fr.siteduzero.com";
 }
 
 void XmlParser::parse_xml_file(const std::string& _url)
@@ -46,7 +48,7 @@ void XmlParser::parse_xml_file(const std::string& _url)
 	set_mark_of(url);
 }
 
-void XmlParser::set_mark_of(const std::string& url)
+void XmlParser::set_mark_of(const std::string& _url)
 {
 	std::ifstream stream("index.html");
 	std::string line;
@@ -87,30 +89,26 @@ void XmlParser::add_new_url(const std::string& line)
 	{
 		return;
 	}
-	std::string url = line.substr(startpos, endpos);
-	while (url[url.size() - 1] == '/' || url[url.size() - 1] == '#')
+	std::string _url = line.substr(startpos, endpos);
+	while (_url[_url.size() - 1] == '/' || _url[_url.size() - 1] == '#')
 	{
 		std::string tmp = "";
-		for (int i = 0; i < url.size() - 1; i++)
+		for (int i = 0; i < _url.size() - 1; i++)
 		{
-			tmp += url[i];
+			tmp += _url[i];
 		}
-		url = tmp;
+		_url = tmp;
 		//std::cout << "prout";
 	}
-	if (url.find(dname) != std::string::npos) //std::regex_match(url, regex))
+	for (auto u : urls)
 	{
-		std::string tmp;
-		for (auto it = urls.begin(); it != urls.end(); it++)
+		if (_url == u)
 		{
-			if (tmp == *it)
-			{
-				return;
-			}
-		}
-		if (url.substr(0, dname.size()) == dname)
-		{
-			urls.push_back(url);
+			return;
 		}
 	}
+	if (_url.size() >= dname.size() && _url.find(dname) != std::string::npos)
+	{
+		urls.push_back(_url);
+	}	
 }

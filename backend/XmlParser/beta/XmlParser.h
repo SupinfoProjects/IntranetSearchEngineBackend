@@ -30,10 +30,10 @@ public:
 	std::vector<std::string> get_keywords() const { return kwords; }
 	std::vector<std::string> get_urls()     const { return urls;   }
 	int                      get_mark()     const { return mark; }
-	std::string				 get_domain_name() const { return dname; }
+	//std::string				 get_domain_name() const { return dname; }
 
 private:
-	std::string url, dname;
+	std::string url;//, dname;
 	std::vector<std::string> kwords;
 	std::vector<std::string> urls;
 	int mark;
