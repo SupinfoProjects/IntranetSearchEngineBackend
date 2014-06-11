@@ -37,7 +37,7 @@ void XmlParser::parse_xml_file(const std::string& _url)
 		{
 			continue;
 		}
-		if (line.find("<a href") != std::string::npos)
+		if (line.find("href") != std::string::npos)
 		{
 			add_new_url(line);
 		}
@@ -77,7 +77,7 @@ void XmlParser::set_mark_of(const std::string& _url)
 
 void XmlParser::add_new_url(const std::string& line)
 {
-	std::string href = "<a href=\"";
+	std::string href = "href=\"";
 	int startpos = line.find(href) + href.size();
 	int endpos = line.find("\"");
 	std::string sub = line.substr(endpos + 1);
