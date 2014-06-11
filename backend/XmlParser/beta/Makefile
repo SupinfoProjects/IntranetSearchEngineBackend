@@ -1,5 +1,5 @@
 # Compilation du programme : taper "make"
-XmlParser: main.o XmlParserr.o
+XmlParser: main.o XmlParser.o
 	g++ -std=c++11 -o $@ $^
 
 # Création de la lib statique : taper "make lib"
