@@ -3,8 +3,8 @@ XmlParser: main.o XmlParser.o
 	g++ -std=c++11 -o $@ $^
 
 # Création de la lib statique : taper "make lib"
-lib: main.o XmlParser.o
-	ar -q XmlParser.a XmlParser.o
+lib: main.o XmlParser.o Tag.o
+	ar -q XmlParser.a XmlParser.o Tag.o
 
 # Création de main.o
 main.o: main.cpp XmlParser.h
@@ -13,6 +13,10 @@ main.o: main.cpp XmlParser.h
 # Création de XmlParser.o
 XmlParser.o: XmlParser.cpp XmlParser.h
 	g++ -std=c++11 -o XmlParser.o -c XmlParser.cpp
+
+# Création de Tag.o
+Tag.o: Tag.cpp Tag.h
+	g++ -std=c++11 -o Tag.o -c Tag.cpp
 
 # Lance le programme : taper "make run"
 run: XmlParser
