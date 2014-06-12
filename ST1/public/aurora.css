@@ -1,5 +1,5 @@
 body{
-    background-image: url(../img/300i.png);
+    background-image: url(../img/aurora_background.png);
 }
 @font-face {
     font-family: space age;
@@ -7,7 +7,7 @@ body{
 }
 #title{
     position: relative;
-    width: 700px;
+    width: 720px;
     height: 50px;
     margin-left: auto;
     margin-right: auto;
@@ -15,14 +15,6 @@ body{
     color: white;
     text-shadow: white 0px 0px 6px;
 
-}
-#link{
-    position: relative;
-    font-family: "space age";
-    color: white;
-    text-shadow: white 0px 0px 6px;
-    display:block;
-    text-align:center;
 }
 #content{
     position: relative;
@@ -49,7 +41,7 @@ body{
 
 #video{
     /*display: inline-block;*/
-    margin-top: 100px;
+    margin-top: 200px;
     width: 560px;
     height: 320px;
     box-shadow: white 0 0 20px;
@@ -76,6 +68,14 @@ body{
     }
 }
 
+#link{
+    position: relative;
+    font-family: "space age";
+    color: white;
+    text-shadow: white 0px 0px 6px;
+    display:block;
+    text-align:center;
+}
 @media screen and (max-width: 1000px){
     #img300{
         position: relative;
@@ -87,20 +87,24 @@ body{
 
 @keyframes move
 {
-0%{
-    right: -150%;
-}
-100%{
-    right: 0%;
-}
+    0%{
+        right: -150%;
+        top: -50%
+    }
+    100%{
+        right: 0%;
+        top: 0%;
+    }
 }
 
 @-webkit-keyframes move
 {
     0%{
         right: -150%;
+        top: -50%
     }
     100%{
         right: 0%;
+        top: 0%
     }
 }
