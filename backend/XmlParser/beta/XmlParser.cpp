@@ -44,21 +44,22 @@ void XmlParser::parseXmlFile(const std::string& _url)
 			std::string keyword = "";
 			std::string content = "content=\"";
 			std::string kwordsList = line.substr(line.find(content) + content.size());
-			for (int i{}; line[i] != '\"'; i++)
+			for (int i{}; kwordsList[i] != '\"'; i++)
 			{
 				if (kwordsList[i] == ',')
 				{
+					i++;
 					std::cout << "KEYWORD " << keyword << std::endl;
 					kwords.push_back(keyword);
 					keyword = "";
-					if (kwordsList[i+1] == ' ')
+					while (kwordsList[i] == ' ')
 					{
 						i++;
 					}
-					continue;
+					//continue;
 				}
 				keyword += kwordsList[i];
-				kwords.push_back(keyword);
+				//kwords.push_back(keyword);
 			}
 		}
 		if (line.find("href") != std::string::npos)
