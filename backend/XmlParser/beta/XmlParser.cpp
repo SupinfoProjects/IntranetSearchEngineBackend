@@ -43,7 +43,7 @@ void XmlParser::parse_xml_file(const std::string& _url)
 		{
 			std::string keyword = "";
 			std::string content = "content=\"";
-			std::string kwordsList = line.substr(line.find(content) + content.size());
+			std::string kwordsList = line.substr(line.find(content) + content.size() + 1);
 			for (int i{}; line[i] != '\"'; i++)
 			{
 				if (kwordsList[i] == ',')
