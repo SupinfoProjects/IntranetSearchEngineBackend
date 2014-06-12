@@ -48,6 +48,7 @@ void XmlParser::parseXmlFile(const std::string& _url)
 			{
 				if (kwordsList[i] == ',')
 				{
+					std::cout << "KEYWORD " << keyword << std::endl;
 					kwords.push_back(keyword);
 					keyword = "";
 					if (kwordsList[i+1] == ' ')
@@ -58,7 +59,6 @@ void XmlParser::parseXmlFile(const std::string& _url)
 				}
 				keyword += kwordsList[i];
 				kwords.push_back(keyword);
-				std::cout << "KEYWORD " << keyword << std::endl;
 			}
 		}
 		if (line.find("href") != std::string::npos)
