@@ -50,6 +50,10 @@ void XmlParser::parse_xml_file(const std::string& _url)
 				{
 					kwords.push_back(keyword);
 					keyword = "";
+					if (kwordsList[i+1] == ' ')
+					{
+						i++;
+					}
 					continue;
 				}
 				keyword += kwordsList[i];
