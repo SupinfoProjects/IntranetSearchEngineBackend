@@ -16,6 +16,8 @@ use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
  */
 class ProjectServiceContainer extends Container
 {
+    private $parameters;
+
     /**
      * Constructor.
      */
@@ -84,7 +86,7 @@ class ProjectServiceContainer extends Container
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getParameterBag()
     {

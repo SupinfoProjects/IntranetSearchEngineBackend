@@ -27,7 +27,19 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $context = $this->context;
         $request = $this->request;
 
+        // search
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'search');
+            }
 
+            return array (  '_controller' => 'wdhif\\SEBundle\\Controller\\DefaultController::indexAction',  '_route' => 'search',);
+        }
+
+        // result
+        if ($pathinfo === '/result') {
+            return array (  '_controller' => 'wdhif\\SEBundle\\Controller\\DefaultController::resultAction',  '_route' => 'result',);
+        }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }

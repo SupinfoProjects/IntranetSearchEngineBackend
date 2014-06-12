@@ -16,6 +16,7 @@
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
+      <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="wdhifSEBundle">wdhif\SEBundle\wdhifSEBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
@@ -89,6 +90,7 @@
     <parameter key="debug.stopwatch.class">Symfony\Component\Stopwatch\Stopwatch</parameter>
     <parameter key="debug.container.dump">C:/wamp/www/SearchEngineB2/SEWeb/app/cache/dev/appDevDebugProjectContainer.xml</parameter>
     <parameter key="debug.controller_resolver.class">Symfony\Component\HttpKernel\Controller\TraceableControllerResolver</parameter>
+    <parameter key="debug.debug_handlers_listener.class">Symfony\Component\HttpKernel\EventListener\DebugHandlersListener</parameter>
     <parameter key="kernel.secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="kernel.http_method_override">true</parameter>
     <parameter key="kernel.trusted_hosts" type="collection"/>
@@ -105,7 +107,9 @@
     <parameter key="session.handler.native_file.class">Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler</parameter>
     <parameter key="session.handler.write_check.class">Symfony\Component\HttpFoundation\Session\Storage\Handler\WriteCheckSessionHandler</parameter>
     <parameter key="session_listener.class">Symfony\Bundle\FrameworkBundle\EventListener\SessionListener</parameter>
-    <parameter key="session.storage.options" type="collection"/>
+    <parameter key="session.storage.options" type="collection">
+      <parameter key="gc_probability">1</parameter>
+    </parameter>
     <parameter key="session.save_path">C:/wamp/www/SearchEngineB2/SEWeb/app/cache/dev/sessions</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
     <parameter key="security.secure_random.class">Symfony\Component\Security\Core\Util\SecureRandom</parameter>
@@ -114,6 +118,7 @@
     <parameter key="form.factory.class">Symfony\Component\Form\FormFactory</parameter>
     <parameter key="form.extension.class">Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension</parameter>
     <parameter key="form.type_guesser.validator.class">Symfony\Component\Form\Extension\Validator\ValidatorTypeGuesser</parameter>
+    <parameter key="form.type_extension.form.request_handler.class">Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationRequestHandler</parameter>
     <parameter key="form.type_extension.csrf.enabled">true</parameter>
     <parameter key="form.type_extension.csrf.field_name">_token</parameter>
     <parameter key="security.csrf.token_generator.class">Symfony\Component\Security\Csrf\TokenGenerator\UriSafeTokenGenerator</parameter>
@@ -154,21 +159,14 @@
     <parameter key="templating.engines" type="collection">
       <parameter>twig</parameter>
     </parameter>
-    <parameter key="validator.class">Symfony\Component\Validator\Validator</parameter>
-    <parameter key="validator.mapping.class_metadata_factory.class">Symfony\Component\Validator\Mapping\ClassMetadataFactory</parameter>
+    <parameter key="validator.class">Symfony\Component\Validator\ValidatorInterface</parameter>
+    <parameter key="validator.builder.class">Symfony\Component\Validator\ValidatorBuilderInterface</parameter>
+    <parameter key="validator.builder.factory.class">Symfony\Component\Validator\Validation</parameter>
     <parameter key="validator.mapping.cache.apc.class">Symfony\Component\Validator\Mapping\Cache\ApcCache</parameter>
     <parameter key="validator.mapping.cache.prefix"></parameter>
-    <parameter key="validator.mapping.loader.loader_chain.class">Symfony\Component\Validator\Mapping\Loader\LoaderChain</parameter>
-    <parameter key="validator.mapping.loader.static_method_loader.class">Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader</parameter>
-    <parameter key="validator.mapping.loader.annotation_loader.class">Symfony\Component\Validator\Mapping\Loader\AnnotationLoader</parameter>
-    <parameter key="validator.mapping.loader.xml_files_loader.class">Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader</parameter>
-    <parameter key="validator.mapping.loader.yaml_files_loader.class">Symfony\Component\Validator\Mapping\Loader\YamlFilesLoader</parameter>
     <parameter key="validator.validator_factory.class">Symfony\Bundle\FrameworkBundle\Validator\ConstraintValidatorFactory</parameter>
-    <parameter key="validator.mapping.loader.xml_files_loader.mapping_files" type="collection">
-      <parameter>C:\wamp\www\SearchEngineB2\SEWeb\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/config/validation.xml</parameter>
-    </parameter>
-    <parameter key="validator.mapping.loader.yaml_files_loader.mapping_files" type="collection"/>
     <parameter key="validator.expression.class">Symfony\Component\Validator\Constraints\ExpressionValidator</parameter>
+    <parameter key="validator.email.class">Symfony\Component\Validator\Constraints\EmailValidator</parameter>
     <parameter key="validator.translation_domain">validators</parameter>
     <parameter key="fragment.listener.class">Symfony\Component\HttpKernel\EventListener\FragmentListener</parameter>
     <parameter key="form.resolved_type_factory.data_collector_proxy.class">Symfony\Component\Form\Extension\DataCollector\Proxy\ResolvedTypeFactoryDataCollectorProxy</parameter>
@@ -338,15 +336,20 @@
     </parameter>
     <parameter key="monolog.logger.class">Symfony\Bridge\Monolog\Logger</parameter>
     <parameter key="monolog.gelf.publisher.class">Gelf\MessagePublisher</parameter>
+    <parameter key="monolog.gelfphp.publisher.class">Gelf\Publisher</parameter>
     <parameter key="monolog.handler.stream.class">Monolog\Handler\StreamHandler</parameter>
     <parameter key="monolog.handler.console.class">Symfony\Bridge\Monolog\Handler\ConsoleHandler</parameter>
     <parameter key="monolog.handler.group.class">Monolog\Handler\GroupHandler</parameter>
     <parameter key="monolog.handler.buffer.class">Monolog\Handler\BufferHandler</parameter>
     <parameter key="monolog.handler.rotating_file.class">Monolog\Handler\RotatingFileHandler</parameter>
     <parameter key="monolog.handler.syslog.class">Monolog\Handler\SyslogHandler</parameter>
+    <parameter key="monolog.handler.syslogudp.class">Monolog\Handler\SyslogUdpHandler</parameter>
     <parameter key="monolog.handler.null.class">Monolog\Handler\NullHandler</parameter>
     <parameter key="monolog.handler.test.class">Monolog\Handler\TestHandler</parameter>
     <parameter key="monolog.handler.gelf.class">Monolog\Handler\GelfHandler</parameter>
+    <parameter key="monolog.handler.rollbar.class">Monolog\Handler\RollbarHandler</parameter>
+    <parameter key="monolog.handler.flowdock.class">Monolog\Handler\FlowdockHandler</parameter>
+    <parameter key="monolog.handler.browser_console.class">Monolog\Handler\BrowserConsoleHandler</parameter>
     <parameter key="monolog.handler.firephp.class">Symfony\Bridge\Monolog\Handler\FirePHPHandler</parameter>
     <parameter key="monolog.handler.chromephp.class">Symfony\Bridge\Monolog\Handler\ChromePhpHandler</parameter>
     <parameter key="monolog.handler.debug.class">Symfony\Bridge\Monolog\Handler\DebugHandler</parameter>
@@ -361,9 +364,11 @@
     <parameter key="monolog.handler.amqp.class">Monolog\Handler\AmqpHandler</parameter>
     <parameter key="monolog.handler.error_log.class">Monolog\Handler\ErrorLogHandler</parameter>
     <parameter key="monolog.handler.loggly.class">Monolog\Handler\LogglyHandler</parameter>
+    <parameter key="monolog.handler.logentries.class">Monolog\Handler\LogEntriesHandler</parameter>
     <parameter key="monolog.activation_strategy.not_found.class">Symfony\Bundle\MonologBundle\NotFoundActivationStrategy</parameter>
     <parameter key="monolog.handler.fingers_crossed.class">Monolog\Handler\FingersCrossedHandler</parameter>
     <parameter key="monolog.handler.fingers_crossed.error_level_activation_strategy.class">Monolog\Handler\FingersCrossed\ErrorLevelActivationStrategy</parameter>
+    <parameter key="monolog.handler.filter.class">Monolog\Handler\FilterHandler</parameter>
     <parameter key="monolog.handler.mongo.class">Monolog\Handler\MongoDBHandler</parameter>
     <parameter key="monolog.mongo.client.class">MongoClient</parameter>
     <parameter key="monolog.swift_mailer.handlers" type="collection"/>
@@ -509,9 +514,17 @@
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
+    <parameter key="knp_paginator.class">Knp\Component\Pager\Paginator</parameter>
+    <parameter key="knp_paginator.templating.helper.pagination.class">Knp\Bundle\PaginatorBundle\Templating\PaginationHelper</parameter>
+    <parameter key="knp_paginator.helper.processor.class">Knp\Bundle\PaginatorBundle\Helper\Processor</parameter>
+    <parameter key="knp_paginator.template.pagination">KnpPaginatorBundle:Pagination:sliding.html.twig</parameter>
+    <parameter key="knp_paginator.template.filtration">KnpPaginatorBundle:Pagination:filtration.html.twig</parameter>
+    <parameter key="knp_paginator.template.sortable">KnpPaginatorBundle:Pagination:sortable_link.html.twig</parameter>
+    <parameter key="knp_paginator.page_range">5</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
+    <parameter key="twig.extension.webprofiler.class">Symfony\Bundle\WebProfilerBundle\Twig\WebProfilerExtension</parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.class">Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
@@ -929,6 +942,46 @@
       <argument type="service" id="debug.stopwatch"/>
       <argument type="service" id="monolog.logger.event" on-invalid="null"/>
       <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.paginate</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.paginate</argument>
+          <argument>pagination</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sortable</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.filtration</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sliding_pagination</argument>
+          <argument>pagination</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListenerService">
         <argument>kernel.controller</argument>
         <argument type="collection">
           <argument>data_collector.router</argument>
@@ -940,6 +993,14 @@
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument>assetic.request_listener</argument>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sliding_pagination</argument>
           <argument>onKernelRequest</argument>
         </argument>
         <argument>0</argument>
@@ -971,6 +1032,14 @@
       <call method="addSubscriberService">
         <argument>debug.deprecation_logger_listener</argument>
         <argument>Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>debug.scream_logger_listener</argument>
+        <argument>Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>debug.debug_handlers_listener</argument>
+        <argument>Symfony\Component\HttpKernel\EventListener\DebugHandlersListener</argument>
       </call>
       <call method="addSubscriberService">
         <argument>session_listener</argument>
@@ -1054,6 +1123,19 @@
       <argument>deprecation</argument>
       <argument type="service" id="monolog.logger.deprecation" on-invalid="null"/>
     </service>
+    <service id="debug.scream_logger_listener" class="Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener">
+      <tag name="kernel.event_subscriber"/>
+      <tag name="monolog.logger" channel="scream"/>
+      <argument>scream</argument>
+      <argument type="service" id="monolog.logger.scream" on-invalid="null"/>
+    </service>
+    <service id="debug.debug_handlers_listener" class="Symfony\Component\HttpKernel\EventListener\DebugHandlersListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="collection">
+        <argument type="service" id="http_kernel" on-invalid="null"/>
+        <argument>terminateWithException</argument>
+      </argument>
+    </service>
     <service id="session" class="Symfony\Component\HttpFoundation\Session\Session">
       <argument type="service" id="session.storage.native"/>
       <argument type="service">
@@ -1068,7 +1150,9 @@
       <argument>0</argument>
     </service>
     <service id="session.storage.native" class="Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage">
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="gc_probability">1</argument>
+      </argument>
       <argument>null</argument>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
@@ -1086,9 +1170,7 @@
       <argument type="service" id="monolog.logger.security" on-invalid="ignore"/>
     </service>
     <service id="form.resolved_type_factory" class="Symfony\Component\Form\Extension\DataCollector\Proxy\ResolvedTypeFactoryDataCollectorProxy">
-      <argument type="service">
-        <service class="Symfony\Component\Form\ResolvedFormTypeFactory" public="false"/>
-      </argument>
+      <argument type="service" id="605cd993f7293ba4988252b26bae4a462deea4c0a9cfdec062716a590d5b6638_1"/>
       <argument type="service" id="data_collector.form"/>
     </service>
     <service id="form.registry" class="Symfony\Component\Form\FormRegistry">
@@ -1158,7 +1240,7 @@
     </service>
     <service id="form.type_guesser.validator" class="Symfony\Component\Form\Extension\Validator\ValidatorTypeGuesser">
       <tag name="form.type_guesser"/>
-      <argument type="service" id="validator.mapping.class_metadata_factory"/>
+      <argument type="service" id="validator"/>
     </service>
     <service id="form.type.form" class="Symfony\Component\Form\Extension\Core\Type\FormType">
       <tag name="form.type" alias="form"/>
@@ -1253,6 +1335,9 @@
     </service>
     <service id="form.type_extension.form.http_foundation" class="Symfony\Component\Form\Extension\HttpFoundation\Type\FormTypeHttpFoundationExtension">
       <tag name="form.type_extension" alias="form"/>
+      <argument type="service">
+        <service class="Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationRequestHandler" public="false"/>
+      </argument>
     </service>
     <service id="form.type_extension.form.validator" class="Symfony\Component\Form\Extension\Validator\Type\FormTypeValidatorExtension">
       <tag name="form.type_extension" alias="form"/>
@@ -1314,11 +1399,11 @@
     </service>
     <service id="templating.helper.request" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\RequestHelper">
       <tag name="templating.helper" alias="request"/>
-      <argument type="service" id="request" strict="false"/>
+      <argument type="service" id="request_stack"/>
     </service>
     <service id="templating.helper.session" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\SessionHelper">
       <tag name="templating.helper" alias="session"/>
-      <argument type="service" id="request" strict="false"/>
+      <argument type="service" id="request_stack"/>
     </service>
     <service id="templating.helper.router" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\RouterHelper">
       <tag name="templating.helper" alias="router"/>
@@ -1361,62 +1446,58 @@
     <service id="templating.globals" class="Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables">
       <argument type="service" id="service_container"/>
     </service>
-    <service id="validator" class="Symfony\Component\Validator\Validator">
-      <argument type="service" id="validator.mapping.class_metadata_factory"/>
-      <argument type="service">
-        <service class="Symfony\Bundle\FrameworkBundle\Validator\ConstraintValidatorFactory" public="false">
-          <argument type="service" id="service_container"/>
-          <argument type="collection">
-            <argument key="validator.expression">validator.expression</argument>
-            <argument key="security.validator.user_password">security.validator.user_password</argument>
-            <argument key="doctrine.orm.validator.unique">doctrine.orm.validator.unique</argument>
-          </argument>
-        </service>
-      </argument>
-      <argument type="service" id="translator"/>
-      <argument>validators</argument>
-      <argument type="collection">
-        <argument type="service" id="doctrine.orm.validator_initializer"/>
-      </argument>
-    </service>
-    <service id="validator.mapping.class_metadata_factory" class="Symfony\Component\Validator\Mapping\ClassMetadataFactory" public="false">
-      <argument type="service">
-        <service class="Symfony\Component\Validator\Mapping\Loader\LoaderChain" public="false">
-          <argument type="collection">
-            <argument type="service">
-              <service class="Symfony\Component\Validator\Mapping\Loader\AnnotationLoader" public="false">
-                <argument type="service" id="annotation_reader"/>
-              </service>
+    <service id="validator" class="Symfony\Component\Validator\ValidatorInterface" factory-method="getValidator" factory-service="validator.builder"/>
+    <service id="validator.builder" class="Symfony\Component\Validator\ValidatorBuilderInterface" factory-method="createValidatorBuilder">
+      <call method="setConstraintValidatorFactory">
+        <argument type="service">
+          <service class="Symfony\Bundle\FrameworkBundle\Validator\ConstraintValidatorFactory" public="false">
+            <argument type="service" id="service_container"/>
+            <argument type="collection">
+              <argument key="validator.expression">validator.expression</argument>
+              <argument key="Symfony\Component\Validator\Constraints\EmailValidator">validator.email</argument>
+              <argument key="security.validator.user_password">security.validator.user_password</argument>
+              <argument key="doctrine.orm.validator.unique">doctrine.orm.validator.unique</argument>
             </argument>
-            <argument type="service">
-              <service class="Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader" public="false"/>
-            </argument>
-            <argument type="service">
-              <service class="Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader" public="false">
-                <argument type="collection">
-                  <argument>C:\wamp\www\SearchEngineB2\SEWeb\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/config/validation.xml</argument>
-                </argument>
-              </service>
-            </argument>
-            <argument type="service">
-              <service class="Symfony\Component\Validator\Mapping\Loader\YamlFilesLoader" public="false">
-                <argument type="collection"/>
-              </service>
-            </argument>
-          </argument>
-        </service>
-      </argument>
-      <argument>null</argument>
+          </service>
+        </argument>
+      </call>
+      <call method="setTranslator">
+        <argument type="service" id="translator"/>
+      </call>
+      <call method="setTranslationDomain">
+        <argument>validators</argument>
+      </call>
+      <call method="addXmlMappings">
+        <argument type="collection">
+          <argument>C:\wamp\www\SearchEngineB2\SEWeb\vendor\symfony\symfony\src\Symfony\Component\Form/Resources/config/validation.xml</argument>
+        </argument>
+      </call>
+      <call method="enableAnnotationMapping">
+        <argument type="service" id="annotation_reader"/>
+      </call>
+      <call method="addMethodMapping">
+        <argument>loadClassMetadata</argument>
+      </call>
+      <call method="addObjectInitializers">
+        <argument type="collection">
+          <argument type="service" id="doctrine.orm.validator_initializer"/>
+        </argument>
+      </call>
     </service>
     <service id="validator.expression" class="Symfony\Component\Validator\Constraints\ExpressionValidator">
       <tag name="validator.constraint_validator" alias="validator.expression"/>
       <argument type="service" id="property_accessor"/>
+    </service>
+    <service id="validator.email" class="Symfony\Component\Validator\Constraints\EmailValidator">
+      <tag name="validator.constraint_validator" alias="Symfony\Component\Validator\Constraints\EmailValidator"/>
+      <argument>false</argument>
     </service>
     <service id="fragment.listener" class="Symfony\Component\HttpKernel\EventListener\FragmentListener">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="uri_signer"/>
       <argument>/_fragment</argument>
     </service>
+    <service id="605cd993f7293ba4988252b26bae4a462deea4c0a9cfdec062716a590d5b6638_1" class="Symfony\Component\Form\ResolvedFormTypeFactory"/>
     <service id="form.type_extension.form.data_collector" class="Symfony\Component\Form\Extension\DataCollector\Type\DataCollectorTypeExtension">
       <tag name="form.type_extension" alias="form"/>
       <argument type="service" id="data_collector.form"/>
@@ -1998,6 +2079,7 @@
           <service class="Symfony\Bundle\TwigBundle\Extension\AssetsExtension" public="false">
             <tag name="twig.extension"/>
             <argument type="service" id="service_container"/>
+            <argument type="service" id="router.request_context"/>
           </service>
         </argument>
       </call>
@@ -2105,7 +2187,17 @@
         </argument>
       </call>
       <call method="addExtension">
+        <argument type="service" id="knp_paginator.twig.extension.pagination"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="twig.extension.acme.demo"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
+          <service class="Symfony\Bundle\WebProfilerBundle\Twig\WebProfilerExtension" public="false">
+            <tag name="twig.extension"/>
+          </service>
+        </argument>
       </call>
       <call method="addGlobal">
         <argument>app</argument>
@@ -2137,6 +2229,9 @@
       <argument>false</argument>
       <argument type="collection"/>
     </service>
+    <service id="4ce0c88ed2f061192d82d1d0fd15aa9e4364b497570b94ea17f5e4e42595aef5_3" class="Swift_Transport_Esmtp_Auth_PlainAuthenticator"/>
+    <service id="4ce0c88ed2f061192d82d1d0fd15aa9e4364b497570b94ea17f5e4e42595aef5_2" class="Swift_Transport_Esmtp_Auth_LoginAuthenticator"/>
+    <service id="4ce0c88ed2f061192d82d1d0fd15aa9e4364b497570b94ea17f5e4e42595aef5_1" class="Swift_Transport_Esmtp_Auth_CramMd5Authenticator"/>
     <service id="swiftmailer.email_sender.listener" class="Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="service_container"/>
@@ -2376,6 +2471,7 @@
     <service id="sensio_framework_extra.converter.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="sensio_framework_extra.converter.manager"/>
+      <argument>true</argument>
     </service>
     <service id="sensio_framework_extra.converter.manager" class="Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterManager">
       <call method="add">
@@ -2411,6 +2507,51 @@
       </argument>
       <argument type="service" id="security.authentication.trust_resolver" on-invalid="null"/>
       <argument type="service" id="security.role_hierarchy" on-invalid="null"/>
+    </service>
+    <service id="knp_paginator" class="Knp\Component\Pager\Paginator">
+      <argument type="service" id="debug.event_dispatcher"/>
+      <call method="setDefaultPaginatorOptions">
+        <argument type="collection">
+          <argument key="pageParameterName">page</argument>
+          <argument key="sortFieldParameterName">sort</argument>
+          <argument key="sortDirectionParameterName">direction</argument>
+          <argument key="filterFieldParameterName">filterField</argument>
+          <argument key="filterValueParameterName">filterValue</argument>
+          <argument key="distinct">true</argument>
+        </argument>
+      </call>
+    </service>
+    <service id="knp_paginator.subscriber.paginate" class="Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sortable" class="Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.filtration" class="Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sliding_pagination" class="Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+      <argument type="collection">
+        <argument key="defaultPaginationTemplate">KnpPaginatorBundle:Pagination:sliding.html.twig</argument>
+        <argument key="defaultSortableTemplate">KnpPaginatorBundle:Pagination:sortable_link.html.twig</argument>
+        <argument key="defaultFiltrationTemplate">KnpPaginatorBundle:Pagination:filtration.html.twig</argument>
+        <argument key="defaultPageRange">5</argument>
+      </argument>
+    </service>
+    <service id="knp_paginator.helper.processor" class="Knp\Bundle\PaginatorBundle\Helper\Processor">
+      <argument type="service" id="templating.helper.router"/>
+      <argument type="service" id="translator"/>
+    </service>
+    <service id="knp_paginator.templating.helper.pagination" class="Knp\Bundle\PaginatorBundle\Templating\PaginationHelper">
+      <tag name="templating.helper" alias="knp_pagination"/>
+      <argument type="service" id="knp_paginator.helper.processor"/>
+      <argument type="service" id="debug.templating.engine.php"/>
+    </service>
+    <service id="knp_paginator.twig.extension.pagination" class="Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="knp_paginator.helper.processor"/>
     </service>
     <service id="twig.extension.acme.demo" class="Acme\DemoBundle\Twig\Extension\DemoExtension" public="false">
       <tag name="twig.extension"/>
@@ -2545,6 +2686,18 @@
         <argument type="service" id="monolog.handler.debug"/>
       </call>
     </service>
+    <service id="monolog.logger.scream" class="Symfony\Bridge\Monolog\Logger">
+      <argument>scream</argument>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.console"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.main"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.debug"/>
+      </call>
+    </service>
     <service id="monolog.logger.security" class="Symfony\Bridge\Monolog\Logger">
       <argument>security</argument>
       <call method="pushHandler">
@@ -2623,6 +2776,9 @@
       <argument type="service" id="templating.loader"/>
       <argument type="service" id="debug.stopwatch"/>
       <argument type="service" id="templating.globals"/>
+      <call method="setCharset">
+        <argument>UTF-8</argument>
+      </call>
       <call method="setHelpers">
         <argument type="collection">
           <argument key="slots">templating.helper.slots</argument>
@@ -2638,6 +2794,7 @@
           <argument key="logout_url">templating.helper.logout_url</argument>
           <argument key="security">templating.helper.security</argument>
           <argument key="assetic">assetic.helper.dynamic</argument>
+          <argument key="knp_pagination">knp_paginator.templating.helper.pagination</argument>
         </argument>
       </call>
     </service>
@@ -2646,7 +2803,6 @@
       <argument type="service" id="templating.name_parser"/>
       <argument type="service" id="templating.locator"/>
       <argument type="service" id="debug.stopwatch"/>
-      <argument type="service" id="templating.globals"/>
       <call method="setDefaultEscapingStrategy">
         <argument type="collection">
           <argument type="service" id="templating"/>
@@ -2716,6 +2872,10 @@
         <argument>Doctrine</argument>
       </call>
       <call method="addPath">
+        <argument>C:\wamp\www\SearchEngineB2\SEWeb\vendor\knplabs\knp-paginator-bundle\Knp\Bundle\PaginatorBundle/Resources/views</argument>
+        <argument>KnpPaginator</argument>
+      </call>
+      <call method="addPath">
         <argument>C:\wamp\www\SearchEngineB2\SEWeb\src\wdhif\SEBundle/Resources/views</argument>
         <argument>wdhifSE</argument>
       </call>
@@ -2770,15 +2930,9 @@
         <argument type="service">
           <service class="Swift_Transport_Esmtp_AuthHandler" public="false">
             <argument type="collection">
-              <argument type="service">
-                <service class="Swift_Transport_Esmtp_Auth_CramMd5Authenticator" public="false"/>
-              </argument>
-              <argument type="service">
-                <service class="Swift_Transport_Esmtp_Auth_LoginAuthenticator" public="false"/>
-              </argument>
-              <argument type="service">
-                <service class="Swift_Transport_Esmtp_Auth_PlainAuthenticator" public="false"/>
-              </argument>
+              <argument type="service" id="4ce0c88ed2f061192d82d1d0fd15aa9e4364b497570b94ea17f5e4e42595aef5_1"/>
+              <argument type="service" id="4ce0c88ed2f061192d82d1d0fd15aa9e4364b497570b94ea17f5e4e42595aef5_2"/>
+              <argument type="service" id="4ce0c88ed2f061192d82d1d0fd15aa9e4364b497570b94ea17f5e4e42595aef5_3"/>
             </argument>
             <call method="setUsername">
               <argument>null</argument>

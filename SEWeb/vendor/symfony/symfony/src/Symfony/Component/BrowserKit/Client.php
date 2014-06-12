@@ -65,19 +65,19 @@ abstract class Client
     /**
      * Sets whether to automatically follow redirects or not.
      *
-     * @param Boolean $followRedirect Whether to follow redirects
+     * @param bool    $followRedirect Whether to follow redirects
      *
      * @api
      */
     public function followRedirects($followRedirect = true)
     {
-        $this->followRedirects = (Boolean) $followRedirect;
+        $this->followRedirects = (bool) $followRedirect;
     }
 
     /**
      * Sets the maximum number of requests that crawler can follow.
      *
-     * @param integer $maxRedirects
+     * @param int     $maxRedirects
      */
     public function setMaxRedirects($maxRedirects)
     {
@@ -88,7 +88,7 @@ abstract class Client
     /**
      * Sets the insulated flag.
      *
-     * @param Boolean $insulated Whether to insulate the requests or not
+     * @param bool    $insulated Whether to insulate the requests or not
      *
      * @throws \RuntimeException When Symfony Process Component is not installed
      *
@@ -97,12 +97,10 @@ abstract class Client
     public function insulate($insulated = true)
     {
         if ($insulated && !class_exists('Symfony\\Component\\Process\\Process')) {
-            // @codeCoverageIgnoreStart
             throw new \RuntimeException('Unable to isolate requests as the Symfony Process Component is not installed.');
-            // @codeCoverageIgnoreEnd
         }
 
-        $this->insulated = (Boolean) $insulated;
+        $this->insulated = (bool) $insulated;
     }
 
     /**
@@ -282,7 +280,7 @@ abstract class Client
      * @param array   $files         The files
      * @param array   $server        The server parameters (HTTP headers are referenced with a HTTP_ prefix as PHP does)
      * @param string  $content       The raw body data
-     * @param Boolean $changeHistory Whether to update the history or not (only used internally for back(), forward(), and reload())
+     * @param bool    $changeHistory Whether to update the history or not (only used internally for back(), forward(), and reload())
      *
      * @return Crawler
      *
@@ -299,7 +297,7 @@ abstract class Client
         $uri = $this->getAbsoluteUri($uri);
 
         if (isset($server['HTTP_HOST'])) {
-            $uri = preg_replace('{^(https?\://)'.parse_url($uri, PHP_URL_HOST).'}', '\\1'.$server['HTTP_HOST'], $uri);
+            $uri = preg_replace('{^(https?\://)'.parse_url($uri, PHP_URL_HOST).'}', '${1}'.$server['HTTP_HOST'], $uri);
         }
 
         if (isset($server['HTTPS'])) {
@@ -393,9 +391,7 @@ abstract class Client
      */
     protected function getScript($request)
     {
-        // @codeCoverageIgnoreStart
         throw new \LogicException('To insulate requests, you need to override the getScript() method.');
-        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -436,7 +432,7 @@ abstract class Client
     protected function createCrawlerFromContent($uri, $content, $type)
     {
         if (!class_exists('Symfony\Component\DomCrawler\Crawler')) {
-            return null;
+            return;
         }
 
         $crawler = new Crawler(null, $uri);
@@ -596,7 +592,7 @@ abstract class Client
      * Makes a request from a Request object directly.
      *
      * @param Request $request       A Request instance
-     * @param Boolean $changeHistory Whether to update the history or not (only used internally for back(), forward(), and reload())
+     * @param bool    $changeHistory Whether to update the history or not (only used internally for back(), forward(), and reload())
      *
      * @return Crawler
      */

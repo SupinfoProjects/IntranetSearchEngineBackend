@@ -73,10 +73,10 @@
 {% block body %}
     <div class="jumbotron">
         <h1>Intranet Search Engine</h1>
-        <p class="lead">The new Search Engine System from SoluDev</p>
+        <p class="lead">The new Search Engine System</p>
         <form id="search">
             <input id="inputSearch" formmethod="post" placeholder="Entrez votre recherche..." type="text" style="">
-            <a class="btn btn-large btn-success" href="#blank">Go!</a>
+            <a class="btn btn-large btn-success" href="{{ path('result') }}">Go!</a>
         </form>
     </div>
     <div class="scenediv">

@@ -13,6 +13,7 @@ namespace Symfony\Component\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
  * @author Manuel Reinhard <manu@sprain.ch>
@@ -22,10 +23,14 @@ use Symfony\Component\Validator\ConstraintValidator;
 class IbanValidator extends ConstraintValidator
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function validate($value, Constraint $constraint)
     {
+        if (!$constraint instanceof Iban) {
+            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Iban');
+        }
+
         if (null === $value || '' === $value) {
             return;
         }
