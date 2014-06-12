@@ -27,10 +27,10 @@ public:
 	XmlParser(const std::string& _url, const std::string& _dname = "");
 
 	// getters
-	std::vector<std::string> get_keywords()    const { return kwords; }
-	std::vector<std::string> get_urls()        const { return urls;   }
-	int                      get_mark()        const { return mark;   }
-	std::string		 get_domain_name() const { return dname;  }
+	std::vector<std::string> getKeywords()    const { return kwords; }
+	std::vector<std::string> getUrls()        const { return urls;   }
+	int                      getMark()        const { return mark;   }
+	std::string		 getDomainName()  const { return dname;  }
 
 private:
 	std::string url, dname;
@@ -39,9 +39,9 @@ private:
 	int mark;
 
 	//
-	void parse_xml_file(const std::string& _filemane = "");
-	void add_new_url(const std::string& line);
-	void set_mark_of(const std::string& _url);
+	void parseXmlFile(const std::string& _filemane = "");
+	void addNewUrl(const std::string& line);
+	void setMarkOf(const std::string& _url);
 };
 
 #endif // XML_PARSER defined
