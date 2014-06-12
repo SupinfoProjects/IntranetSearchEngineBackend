@@ -24,7 +24,7 @@ namespace
 class XmlParser
 {
 public:
-	XmlParser(const std::string& _url);
+	XmlParser(const std::string& _url, const std::string& _dname = "");
 
 	// getters
 	std::vector<std::string> get_keywords()    const { return kwords; }
