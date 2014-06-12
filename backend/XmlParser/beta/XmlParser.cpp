@@ -11,10 +11,10 @@
 XmlParser::XmlParser(const std::string& _url, const std::string& _dname) : url(_url), dname(_dname)
 {
 	dname = "http://fr.openclassrooms.com";
-	parse_xml_file(url);
+	parseXmlFile(url);
 }
 
-void XmlParser::parse_xml_file(const std::string& _url)
+void XmlParser::parseXmlFile(const std::string& _url)
 {
 	urls.clear();
 	kwords.clear();
@@ -63,13 +63,13 @@ void XmlParser::parse_xml_file(const std::string& _url)
 		}
 		if (line.find("href") != std::string::npos)
 		{
-			add_new_url(line);
+			addNewUrl(line);
 		}
 	}
-	set_mark_of(url);
+	setMarkOf(url);
 }
 
-void XmlParser::set_mark_of(const std::string& _url)
+void XmlParser::setMarkOf(const std::string& _url)
 {
 	std::ifstream stream("index.html");
 	std::string line;
@@ -99,7 +99,7 @@ void XmlParser::set_mark_of(const std::string& _url)
 	}
 }
 
-void XmlParser::add_new_url(const std::string& line)
+void XmlParser::addNewUrl(const std::string& line)
 {
 	std::string href = "href=\"";
 	int startpos = line.find(href) + href.size();
