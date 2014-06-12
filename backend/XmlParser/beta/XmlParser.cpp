@@ -53,7 +53,6 @@ void XmlParser::parse_xml_file(const std::string& _url)
 					continue;
 				}
 				keyword += kwordsList[i];
-				}
 				kwords.push_back(keyword);
 				std::cout << "KEYWORD " << keyword << std::endl;
 			}
