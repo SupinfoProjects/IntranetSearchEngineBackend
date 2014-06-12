@@ -31,11 +31,33 @@ void XmlParser::parse_xml_file(const std::string& _url)
 	{
 		std::cout << "Problème d'ouverture index.html";
 	}
+	std::string 
 	while (std::getline(stream, line))
 	{
 		if (line.size() < 8) // "<p> </p>"
 		{
 			continue;
+		}
+		if (line.find("meta") != std::string::npos
+			&& line.find("name=\"keywords\"") != std::string::npos
+			&& line.find("content=\"") != std::string::npos)
+		{
+			std::string keyword = "";
+			std::string content = "content=\"";
+			std::string kwordsList = line.substr(line.find(content) + content.size());
+			for (int i{}; line[i] != '\"'; i++)
+			{
+				if (kwordsList[i] == ',')
+				{
+					kwords.push_back(keyword);
+					keyword = "";
+					continue;
+				}
+				keyword += kwordsList[i];
+				}
+				kwords.push_back(keyword);
+				std::cout << "KEYWORD " << keyword << std::endl;
+			}
 		}
 		if (line.find("href") != std::string::npos)
 		{
