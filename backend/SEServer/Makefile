@@ -1,10 +1,10 @@
-CC=c++
+CC=g++
 INCDIRS= -I./boost_1_55_0 -I./include
 LIBDIRS= -L./boost_1_55_0/stage/lib -L./lib
 LIBS= -lpthread -lmysqlcppconn -lboost_system -static
 LDFLAGS= $(LIBDIRS)
 CFLAGS= -std=c++0x -Wall $(INCDIRS)
-SOURCES=Core.cpp Connection.cpp Listener.cpp Sender.cpp
+SOURCES=Database.cpp Connection.cpp Listener.cpp Sender.cpp Core.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=SEServer
 
@@ -16,7 +16,7 @@ $(EXECUTABLE): $(OBJECTS)
 Connection.o: Connection.cpp Connection.h
 	$(CC) $(CFLAGS) $(LDFLAGS) -c $< -o $@ $(LIBS)
 
-Listener.o: Listener.cpp Listener.h 
+Listener.o: Listener.cpp Listener.h Connection.h 
 	$(CC) $(CFLAGS) $(LDFLAGS) -c $< -o $@ $(LIBS)
 
 Sender.o: Sender.cpp Sender.h 
@@ -25,7 +25,7 @@ Sender.o: Sender.cpp Sender.h
 Database.o: Database.cpp Database.h
 	$(CC) $(CFLAGS) $(LDFLAGS) -c $< -o $@ $(LIBS)
 
-Core.o: Core.cpp Listener.o Sender.o Connection.o Database.o
+Core.o: Core.cpp Listener.h Sender.h Connection.h Database.h
 	$(CC) $(CFLAGS) $(LDFLAGS) -c $< -o $@ $(LIBS)
 
 clean:
