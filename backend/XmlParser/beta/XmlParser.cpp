@@ -8,7 +8,7 @@
 #include <regex>
 #include <string>
 
-XmlParser::XmlParser(const std::string& _url) : url(_url)
+XmlParser::XmlParser(const std::string& _url, const std::string& _dname) : url(_url), dname(_dname)
 {
 	dname = "http://fr.openclassrooms.com";
 	parse_xml_file(url);
