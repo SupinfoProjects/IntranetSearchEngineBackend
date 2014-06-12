@@ -7,11 +7,11 @@ int main(int argc, char **argv)
 {
 	XmlParser parser("oc.html");
 	//std::cout << parser.mark;
-	for (auto k : parser.get_urls())
+	for (auto k : parser.getKeywords())
 	{
 		std::cout << k << std::endl;
 	}
-	std::cout << parser.get_mark();
+	std::cout << parser.getMark();
 	/*
 	std::regex r("^(http|https)://[a-z0-9\-\_\\.]*.(com|fr|org|php|htm|html)(/*)[a-z0-9\-\_\\./]*$");
 	std::string s = "https://site-du_zero.com/zboub/aga";
@@ -19,6 +19,6 @@ int main(int argc, char **argv)
 	{
 		std::cout << "aga";
 	}*/
-	std::cin.get();
+	//std::cin.get();
 	return 0;
 }

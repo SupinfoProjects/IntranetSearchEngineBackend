@@ -34,7 +34,7 @@ public:
 
 private:
 	std::string url, dname;
-	std::vector<std::string> kwords;
+	std::vector<std::string> kwords, metakwords;
 	std::vector<std::string> urls;
 	int mark;
 
