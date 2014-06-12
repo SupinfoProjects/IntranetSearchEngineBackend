@@ -31,7 +31,6 @@ void XmlParser::parse_xml_file(const std::string& _url)
 	{
 		std::cout << "Problème d'ouverture index.html";
 	}
-	std::string 
 	while (std::getline(stream, line))
 	{
 		if (line.size() < 8) // "<p> </p>"
