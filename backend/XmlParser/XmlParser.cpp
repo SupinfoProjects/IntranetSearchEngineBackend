@@ -10,21 +10,17 @@
 
 XmlParser::XmlParser(const std::string& _url, const std::string& _dname) : url(_url), dname(_dname)
 {
-	dname = "http://fr.openclassrooms.com";
-	parseXmlFile(url);
+	system("wget url");
+	parseXmlFile("index.html");
 }
 
 void XmlParser::parseXmlFile(const std::string& _url)
 {
 	urls.clear();
 	kwords.clear();
-	if (_url != "")
-	{
-		//url = _url;
-		// Décommenter pour Linux
-		//system("rm index.html");
-		//system(std::string("wget " + filename).c_str());
-	}
+	// TODO - Décommenter pour Linux
+	//system("rm index.html");
+	//system(std::string("wget " + filename).c_str());
 	std::ifstream stream("index.html");
 	std::string line;
 	if (!stream)
