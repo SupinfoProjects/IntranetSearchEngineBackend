@@ -6,6 +6,7 @@
 
 struct HtmlPage
 {
+    HtmlPage() : url(""), mark(-1) {}
     std::string url;
     std::vector<std::string> metaKeywords;
     int mark;
