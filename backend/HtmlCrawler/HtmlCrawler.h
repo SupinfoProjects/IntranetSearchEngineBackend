@@ -14,7 +14,6 @@ public:
     void crawlWebSite(std::string url);
     // ajouter requête bdd
 private:
-    //std::vector<XmlParser> parsers;
     std::vector<HtmlPage> pages;
     std::vector<std::string> urls;
 };
