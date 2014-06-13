@@ -13,6 +13,7 @@ namespace Symfony\Component\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
  * Provides a base class for the validation of property comparisons.
@@ -22,10 +23,14 @@ use Symfony\Component\Validator\ConstraintValidator;
 abstract class AbstractComparisonValidator extends ConstraintValidator
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function validate($value, Constraint $constraint)
     {
+        if (!$constraint instanceof AbstractComparison) {
+            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\AbstractComparison');
+        }
+
         if (null === $value) {
             return;
         }
@@ -77,7 +82,7 @@ abstract class AbstractComparisonValidator extends ConstraintValidator
      * @param mixed      $value1     The first value to compare
      * @param mixed      $value2     The second value to compare
      *
-     * @return Boolean true if the relationship is valid, false otherwise
+     * @return bool    true if the relationship is valid, false otherwise
      */
     abstract protected function compareValues($value1, $value2);
 }

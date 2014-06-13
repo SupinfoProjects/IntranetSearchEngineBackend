@@ -780,7 +780,7 @@ abstract class AbstractNumberFormatterTest extends \PHPUnit_Framework_TestCase
     {
         $formatter = $this->getNumberFormatter('en', NumberFormatter::DECIMAL);
         $parsedValue = $formatter->parse($value, NumberFormatter::TYPE_DOUBLE);
-        $this->assertSame($expectedValue, $parsedValue);
+        $this->assertEquals($expectedValue, $parsedValue, '', 0.001);
     }
 
     public function parseTypeDoubleProvider()
@@ -825,14 +825,14 @@ abstract class AbstractNumberFormatterTest extends \PHPUnit_Framework_TestCase
     abstract protected function getIntlErrorMessage();
 
     /**
-     * @return integer
+     * @return int
      */
     abstract protected function getIntlErrorCode();
 
     /**
-     * @param integer $errorCode
+     * @param int     $errorCode
      *
-     * @return Boolean
+     * @return bool
      */
     abstract protected function isIntlFailure($errorCode);
 }

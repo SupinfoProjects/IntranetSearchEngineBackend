@@ -64,30 +64,26 @@ class ExceptionController
     }
 
     /**
-     * @param integer $startObLevel
+     * @param int     $startObLevel
      *
      * @return string
      */
     protected function getAndCleanOutputBuffering($startObLevel)
     {
-        // ob_get_level() never returns 0 on some Windows configurations, so if
-        // the level is the same two times in a row, the loop should be stopped.
-        $previousObLevel = null;
-        $currentContent = '';
-
-        while (($obLevel = ob_get_level()) > $startObLevel && $obLevel !== $previousObLevel) {
-            $previousObLevel = $obLevel;
-            $currentContent .= ob_get_clean();
+        if (ob_get_level() <= $startObLevel) {
+            return '';
         }
 
-        return $currentContent;
+        Response::closeOutputBuffers($startObLevel + 1, true);
+
+        return ob_get_clean();
     }
 
     /**
      * @param Request $request
      * @param string  $format
-     * @param integer $code       An HTTP response status code
-     * @param Boolean $debug
+     * @param int     $code       An HTTP response status code
+     * @param bool    $debug
      *
      * @return TemplateReference
      */

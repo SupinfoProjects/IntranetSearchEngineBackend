@@ -897,7 +897,6 @@ if (in_array($mimeType, (array) $mimeTypes)) {
 return $format;
 }
 }
-return null;
 }
 public function setFormat($format, $mimeTypes)
 {
@@ -1373,22 +1372,7 @@ $this->sendContent();
 if (function_exists('fastcgi_finish_request')) {
 fastcgi_finish_request();
 } elseif ('cli'!== PHP_SAPI) {
-$previous = null;
-$obStatus = ob_get_status(1);
-while (($level = ob_get_level()) > 0 && $level !== $previous) {
-$previous = $level;
-if ($obStatus[$level - 1]) {
-if (version_compare(PHP_VERSION,'5.4','>=')) {
-if (isset($obStatus[$level - 1]['flags']) && ($obStatus[$level - 1]['flags'] & PHP_OUTPUT_HANDLER_REMOVABLE)) {
-ob_end_flush();
-}
-} else {
-if (isset($obStatus[$level - 1]['del']) && $obStatus[$level - 1]['del']) {
-ob_end_flush();
-}
-}
-}
-}
+static::closeOutputBuffers(0, true);
 flush();
 }
 return $this;
@@ -1532,7 +1516,6 @@ return (int) $this->headers->getCacheControlDirective('max-age');
 if (null !== $this->getExpires()) {
 return $this->getExpires()->format('U') - $this->getDate()->format('U');
 }
-return null;
 }
 public function setMaxAge($value)
 {
@@ -1550,7 +1533,6 @@ public function getTtl()
 if (null !== $maxAge = $this->getMaxAge()) {
 return $maxAge - $this->getAge();
 }
-return null;
 }
 public function setTtl($seconds)
 {
@@ -1714,7 +1696,26 @@ return in_array($this->statusCode, array(201, 301, 302, 303, 307, 308)) && (null
 }
 public function isEmpty()
 {
-return in_array($this->statusCode, array(201, 204, 304));
+return in_array($this->statusCode, array(204, 304));
+}
+public static function closeOutputBuffers($targetLevel, $flush)
+{
+$status = ob_get_status(true);
+$level = count($status);
+while ($level-- > $targetLevel
+&& (!empty($status[$level]['del'])
+|| (isset($status[$level]['flags'])
+&& ($status[$level]['flags'] & PHP_OUTPUT_HANDLER_REMOVABLE)
+&& ($status[$level]['flags'] & ($flush ? PHP_OUTPUT_HANDLER_FLUSHABLE : PHP_OUTPUT_HANDLER_CLEANABLE))
+)
+)
+) {
+if ($flush) {
+ob_end_flush();
+} else {
+ob_end_clean();
+}
+}
 }
 protected function ensureIEOverSSLCompatibility(Request $request)
 {
@@ -2030,7 +2031,7 @@ $alternatives[] = $key;
 }
 throw new ServiceNotFoundException($id, null, null, $alternatives);
 }
-return null;
+return;
 }
 $this->loading[$id] = true;
 try {
@@ -2041,7 +2042,7 @@ if (array_key_exists($id, $this->services)) {
 unset($this->services[$id]);
 }
 if ($e instanceof InactiveScopeException && self::EXCEPTION_ON_INVALID_REFERENCE !== $invalidBehavior) {
-return null;
+return;
 }
 throw $e;
 }
@@ -2234,16 +2235,16 @@ protected $booted = false;
 protected $name;
 protected $startTime;
 protected $loadClassCache;
-const VERSION ='2.4.3';
-const VERSION_ID ='20403';
+const VERSION ='2.5.0';
+const VERSION_ID ='20500';
 const MAJOR_VERSION ='2';
-const MINOR_VERSION ='4';
-const RELEASE_VERSION ='3';
+const MINOR_VERSION ='5';
+const RELEASE_VERSION ='0';
 const EXTRA_VERSION ='';
 public function __construct($environment, $debug)
 {
 $this->environment = $environment;
-$this->debug = (Boolean) $debug;
+$this->debug = (bool) $debug;
 $this->rootDir = $this->getRootDir();
 $this->name = $this->getName();
 if ($this->debug) {
@@ -2774,7 +2775,6 @@ return $this->path;
 }
 public function getParent()
 {
-return null;
 }
 final public function getName()
 {
@@ -2816,6 +2816,7 @@ $application->add($r->newInstance());
 namespace Symfony\Component\Config
 {
 use Symfony\Component\Config\Resource\ResourceInterface;
+use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 class ConfigCache
 {
@@ -2824,7 +2825,7 @@ private $file;
 public function __construct($file, $debug)
 {
 $this->file = $file;
-$this->debug = (Boolean) $debug;
+$this->debug = (bool) $debug;
 }
 public function __toString()
 {
@@ -2853,13 +2854,20 @@ return true;
 }
 public function write($content, array $metadata = null)
 {
-$mode = 0666 & ~umask();
+$mode = 0666;
+$umask = umask();
 $filesystem = new Filesystem();
 $filesystem->dumpFile($this->file, $content, null);
-@chmod($this->file, $mode);
+try {
+$filesystem->chmod($this->file, $mode, $umask);
+} catch (IOException $e) {
+}
 if (null !== $metadata && true === $this->debug) {
 $filesystem->dumpFile($this->getMetaFile(), serialize($metadata), null);
-@chmod($this->getMetaFile(), $mode);
+try {
+$filesystem->chmod($this->getMetaFile(), $mode, $umask);
+} catch (IOException $e) {
+}
 }
 }
 private function getMetaFile()
@@ -2910,6 +2918,16 @@ return $this->handleException($e, $request, $type);
 public function terminate(Request $request, Response $response)
 {
 $this->dispatcher->dispatch(KernelEvents::TERMINATE, new PostResponseEvent($this, $request, $response));
+}
+public function terminateWithException(\Exception $exception)
+{
+if (!$request = $this->requestStack->getMasterRequest()) {
+throw new \LogicException('Request stack is empty', 0, $exception);
+}
+$response = $this->handleException($exception, $request, self::MASTER_REQUEST);
+$response->sendHeaders();
+$response->sendContent();
+$this->terminate($request, $response);
 }
 private function handleRaw(Request $request, $type = self::MASTER_REQUEST)
 {

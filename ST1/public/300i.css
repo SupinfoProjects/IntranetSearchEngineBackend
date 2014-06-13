@@ -16,6 +16,14 @@ body{
     text-shadow: white 0px 0px 6px;
 
 }
+#link{
+    position: relative;
+    font-family: "space age";
+    color: white;
+    text-shadow: white 0px 0px 6px;
+    display:block;
+    text-align:center;
+}
 #content{
     position: relative;
     margin-right: auto;

@@ -18,6 +18,7 @@ class ItemQuery
         'value'         => \PropelColumnTypes::VARCHAR,
         'price'         => \PropelColumnTypes::FLOAT,
         'is_active'     => \PropelColumnTypes::BOOLEAN,
+        'slug'          => \PropelColumnTypes::VARCHAR,
         'enabled'       => \PropelColumnTypes::BOOLEAN_EMU,
         'updated_at'    => \PropelColumnTypes::TIMESTAMP,
     );
@@ -71,8 +72,6 @@ class ItemQuery
         if ($this->hasColumn($column)) {
             return new Column($column, $this->map[$column]);
         }
-
-        return null;
     }
 
     /**
@@ -95,8 +94,6 @@ class ItemQuery
         if (isset($this->caseInsensitiveMap[$column])) {
             return $this->getColumn($this->caseInsensitiveMap[$column]);
         }
-
-        return null;
     }
 
     /**

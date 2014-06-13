@@ -92,6 +92,14 @@ class XmlDescriptor extends Descriptor
     }
 
     /**
+     * {@inheritdoc}
+     */
+    protected function describeContainerParameter($parameter, array $options = array())
+    {
+        $this->writeDocument($this->getContainerParameterDocument($parameter, $options));
+    }
+
+    /**
      * Writes DOM document.
      *
      * @param \DOMDocument $dom
@@ -212,7 +220,7 @@ class XmlDescriptor extends Descriptor
 
     /**
      * @param ContainerBuilder $builder
-     * @param boolean          $showPrivate
+     * @param bool             $showPrivate
      *
      * @return \DOMDocument
      */
@@ -260,7 +268,7 @@ class XmlDescriptor extends Descriptor
     /**
      * @param ContainerBuilder $builder
      * @param string|null      $tag
-     * @param boolean          $showPrivate
+     * @param bool             $showPrivate
      *
      * @return \DOMDocument
      */
@@ -288,7 +296,7 @@ class XmlDescriptor extends Descriptor
     /**
      * @param Definition  $definition
      * @param string|null $id
-     * @param boolean     $omitTags
+     * @param bool        $omitTags
      *
      * @return \DOMDocument
      */
@@ -362,6 +370,26 @@ class XmlDescriptor extends Descriptor
 
         $aliasXML->setAttribute('service', (string) $alias);
         $aliasXML->setAttribute('public', $alias->isPublic() ? 'true' : 'false');
+
+        return $dom;
+    }
+
+    /**
+     * @param string $parameter
+     * @param array  $options
+     *
+     * @return \DOMDocument
+     */
+    private function getContainerParameterDocument($parameter, $options = array())
+    {
+        $dom = new \DOMDocument('1.0', 'UTF-8');
+        $dom->appendChild($parameterXML = $dom->createElement('parameter'));
+
+        if (isset($options['parameter'])) {
+            $parameterXML->setAttribute('key', $options['parameter']);
+        }
+
+        $parameterXML->appendChild(new \DOMText($this->formatParameter($parameter)));
 
         return $dom;
     }
