@@ -29,7 +29,7 @@ public:
 	std::vector<std::string> getKeywords()     const { return kwords; }
 	std::vector<std::string> getUrls()         const { return urls;   }
 	int                      getMark()         const { return mark;   }
-	std::string		 		 getDomainName()   const { return dname;  }
+	std::string		 getDomainName()   const { return dname;  }
 	std::vector<std::string> getMetaKeywords() const { return metakwords; }
 
 private:
@@ -38,7 +38,7 @@ private:
 	std::vector<std::string> urls;
 	int mark;
 
-	//
+	// Méthodes privées
 	void parseXmlFile(const std::string& _filemane = "");
 	void addNewUrl(const std::string& line);
 	void setMarkOf(const std::string& _url);
