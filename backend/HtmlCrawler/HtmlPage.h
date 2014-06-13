@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#define UNCHECKED -1
+
 struct HtmlPage
 {
     HtmlPage() : url(""), mark(-1) {}
