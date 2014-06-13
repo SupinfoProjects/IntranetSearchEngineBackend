@@ -21,14 +21,24 @@ void HtmlCrawler::crawlWebSite(std::string url)
             page.metaKeywords = parser.getMetaKeywords();
             pages.push_back(page);
         }
-        //urls.clear();
+        urls.clear();
         for (auto page : pages)
         {
-             if (std::find(urls.begin(), urls.end(), page.url) != v.end())
+             for (auto url : page.urls)
              {
-                 continue;
+                 bool alreadyChecked = false;
+                 for (int i{}; i < pages.size(); i++)
+                 {
+                     if (pages[i].url == url)
+                     {
+                         alreadyChecked = true;
+                     }
+                 }
+                 if (!alreadyChecked)
+                 {
+                     urls.push_back(url);
+                 }
              }
-             urls.push_back(page.url);
         }
     }
 }
