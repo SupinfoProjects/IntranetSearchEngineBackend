@@ -10,7 +10,7 @@
 
 XmlParser::XmlParser(const std::string& _url, const std::string& _dname) : url(_url), dname(_dname)
 {
-	if (_dname = "")
+	if (dname == "")
 	{
 		// TODO - A tester
 		for (int i{}; url[i] != '/' && i < url.size(); i++)
@@ -31,7 +31,7 @@ void XmlParser::parseXmlFile(const std::string& _url)
 	mark = 0;
 	// TODO - Décommenter pour Linux
 	system("rm index.html");
-	system(std::string("wget " + filename).c_str());
+	system(std::string("wget " + url).c_str());
 	std::ifstream stream("index.html");
 	std::string line;
 	if (!stream)

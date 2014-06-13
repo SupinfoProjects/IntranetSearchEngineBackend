@@ -18,4 +18,4 @@ int Tag::getMark() const
 {
 	return mark;
 }
-*/
+
