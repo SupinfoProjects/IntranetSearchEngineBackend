@@ -1,4 +1,4 @@
-#include "Tag.h"
+/*#include "Tag.h"
 
 Tag::Tag(std::string _tag, int _mark) : tag(_tag), mark(_mark)
 {
@@ -18,3 +18,4 @@ int Tag::getMark() const
 {
 	return mark;
 }
+*/
