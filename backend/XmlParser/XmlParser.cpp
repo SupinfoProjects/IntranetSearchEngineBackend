@@ -49,6 +49,7 @@ void XmlParser::parseXmlFile(const std::string& _url)
 				if (kwordsList[i] == ',')
 				{
 					i++;
+					mark += 10;
 					metakwords.push_back(keyword);
 					keyword = "";
 					while (kwordsList[i] == ' ')
