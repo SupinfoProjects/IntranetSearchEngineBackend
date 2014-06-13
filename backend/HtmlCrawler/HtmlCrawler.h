@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-//#include "../XmlParser/Tag.h"
 #include "Tag.h"
 #include "XmlParser.h"
 #include "HtmlPage.h"
