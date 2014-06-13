@@ -2,7 +2,6 @@
 
 HtmlCrawler::HtmlCrawler(std::string url)
 {
-    pages.push_back(page);
     crawlWebSite(url); 
 }
 
