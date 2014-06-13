@@ -10,6 +10,14 @@
 
 XmlParser::XmlParser(const std::string& _url, const std::string& _dname) : url(_url), dname(_dname)
 {
+	if (_dname = "")
+	{
+		// TODO - A tester
+		for (int i{}; url[i] != '/' && i < url.size(); i++)
+		{
+			dname += url[i];
+		}
+	}
 	system("wget url");
 	parseXmlFile("index.html");
 }
@@ -18,6 +26,7 @@ void XmlParser::parseXmlFile(const std::string& _url)
 {
 	urls.clear();
 	kwords.clear();
+	metakwords.clear();
 	// TODO - Décommenter pour Linux
 	system("rm index.html");
 	system(std::string("wget " + filename).c_str());
