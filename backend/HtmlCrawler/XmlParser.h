@@ -1,6 +1,8 @@
 #ifndef XML_PARSER
 #define XML_PARSER
 
+#include "Tag.h"
+
 #include <initializer_list>
 #include <string>
 #include <vector>
