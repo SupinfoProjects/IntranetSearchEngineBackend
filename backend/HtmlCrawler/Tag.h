@@ -1,5 +1,5 @@
-#ifndef TAG
-#define TAG
+#ifndef HTML_CRAWLER_TAG
+#define HTML_CRAWLER_TAG
 
 #include <map>
 #include <string>
