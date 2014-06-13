@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "../XmlParser/XmlParser.h"
+#include "XmlParser.h"
 #include "HtmlPage.h"
 
 class HtmlCrawler
