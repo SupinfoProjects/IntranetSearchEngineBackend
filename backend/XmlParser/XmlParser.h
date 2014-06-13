@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 
+#ifndef XML_PARSER_TAG
+#define XML_PARSER_TAG
+
 class Tag
 {
 public:
@@ -36,6 +39,8 @@ int Tag::getMark() const
 {
 	return mark;
 }
+
+#endif // tag
 
 namespace
 {
