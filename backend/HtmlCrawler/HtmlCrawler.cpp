@@ -12,13 +12,13 @@ void HtmlCrawler::crawlWebSite(std::string url)
     {
         for (auto url : urls)
         {
-            /*XmlParser parser(url);
+            XmlParser parser(url);
             HtmlPage page;
             page.url = url;
             page.mark = parser.getMark();
             page.urls = parser.getUrls();
             page.metaKeywords = parser.getMetaKeywords();
-            pages.push_back(page);*/
+            pages.push_back(page);
         }
         urls.clear();
         for (auto page : pages)
