@@ -24,9 +24,11 @@ XmlParser::XmlParser(const std::string& _url, const std::string& _dname) : url(_
 
 void XmlParser::parseXmlFile(const std::string& _url)
 {
+	// (Ré)initialisation pour parser plusieurs pages à la suite
 	urls.clear();
 	kwords.clear();
 	metakwords.clear();
+	mark = 0;
 	// TODO - Décommenter pour Linux
 	system("rm index.html");
 	system(std::string("wget " + filename).c_str());
