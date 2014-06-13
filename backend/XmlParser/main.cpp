@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 {
 	XmlParser parser("oc.html");
 	//std::cout << parser.mark;
-	for (auto k : parser.getKeywords())
+	for (auto k : parser.getMetaKeywords())
 	{
 		std::cout << k << std::endl;
 	}
