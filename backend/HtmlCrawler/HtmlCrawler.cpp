@@ -3,8 +3,8 @@
 HtmlCrawler::HtmlCrawler(std::string url)
 {
 	host = url;
-	urls = std::vector<std::string>();
-	pages = std::vector<HtmlPages>();
+	//urls = std::vector<std::string>();
+	//pages = std::vector<HtmlPages>();
 	crawlWebSite(url);
 }
 
@@ -24,7 +24,7 @@ void HtmlCrawler::crawlWebSite(std::string url)
             page.urls = parser.getUrls();
             page.metaKeywords = parser.getMetaKeywords();
             pages.push_back(page);
-			urls.push_back(url);
+			//urls.push_back(url);
         }
         urls.clear();
         for (auto page : pages)
@@ -38,12 +38,17 @@ void HtmlCrawler::crawlWebSite(std::string url)
 					{
 						checked = true;
 					}
-					else if (url.find(host) == std::string::npos)
+/*					else if (url.find(host) == std::string::npos)
 					{
 						checked = true;
 						checkedUrls.push_back(url);
-					}
+					}*/
 				}	 
+				if (url.find(host) == std::string::npos)
+				{
+					checked = true;
+					checkedUrls.push_back(url);
+				}
 				if (!checked)
 				{
 					urls.push_back(url);
