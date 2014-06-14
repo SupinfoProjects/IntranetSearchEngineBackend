@@ -9,8 +9,8 @@ void HtmlCrawler::crawlWebSite(std::string url)
 {
    	XmlParser parser(url);
 	urls = parser.getUrls();
-    while (urls.size() > 0)
-    {
+    /*while (urls.size() > 0)
+    {*/
         for (auto url : urls)
         {
             XmlParser parser(url);
@@ -21,7 +21,7 @@ void HtmlCrawler::crawlWebSite(std::string url)
             page.metaKeywords = parser.getMetaKeywords();
             pages.push_back(page);
         }
-        urls.clear();
+        /*urls.clear();
         for (auto page : pages)
         {
              for (auto url : page.urls)
@@ -40,5 +40,5 @@ void HtmlCrawler::crawlWebSite(std::string url)
                  }
              }
         }
-	}    
+	}*/
 }
