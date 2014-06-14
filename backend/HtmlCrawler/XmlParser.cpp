@@ -10,21 +10,28 @@
 
 XmlParser::XmlParser(const std::string& _url, const std::string& _dname) : url(_url), dname(_dname)
 {
-	dname = "http://fr.openclassrooms.com";
-	parseXmlFile(url);
+	if (dname == "")
+	{
+		// TODO - A tester
+		for (int i{}; url[i] != '/' && i < url.size(); i++)
+		{
+			dname += url[i];
+		}
+	}
+	system("wget url");
+	parseXmlFile("index.html");
 }
 
 void XmlParser::parseXmlFile(const std::string& _url)
 {
+	// (Ré)initialisation pour parser plusieurs pages à la suite
 	urls.clear();
 	kwords.clear();
-	if (_url != "")
-	{
-		//url = _url;
-		// Décommenter pour Linux
-		//system("rm index.html");
-		//system(std::string("wget " + filename).c_str());
-	}
+	metakwords.clear();
+	mark = 0;
+	// TODO - Décommenter pour Linux
+	system("rm index.html");
+	system(std::string("wget " + url).c_str());
 	std::ifstream stream("index.html");
 	std::string line;
 	if (!stream)
@@ -49,17 +56,15 @@ void XmlParser::parseXmlFile(const std::string& _url)
 				if (kwordsList[i] == ',')
 				{
 					i++;
-					std::cout << "KEYWORD " << keyword << std::endl;
-					kwords.push_back(keyword);
+					mark += 10;
+					metakwords.push_back(keyword);
 					keyword = "";
 					while (kwordsList[i] == ' ')
 					{
 						i++;
 					}
-					//continue;
 				}
 				keyword += kwordsList[i];
-				//kwords.push_back(keyword);
 			}
 		}
 		if (line.find("href") != std::string::npos)

@@ -1,4 +1,4 @@
-#ifndef TAG
+/*#ifndef TAG
 #define TAG
 
 #include <map>
@@ -18,3 +18,4 @@ private:
 };
 
 #endif
+*/

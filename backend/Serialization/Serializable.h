@@ -8,6 +8,7 @@ class Serializable
 public:
 	virtual std::string serialize() = 0;
 	virtual void deserialize(std::string serialized) = 0;
+	virtual void getType() = 0;
 };
 
 #endif

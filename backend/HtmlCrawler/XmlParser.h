@@ -1,11 +1,11 @@
 #ifndef XML_PARSER
 #define XML_PARSER
 
+#include "Tag.h"
+
 #include <initializer_list>
 #include <string>
 #include <vector>
-
-#include "Tag.h"
 
 namespace
 {
@@ -17,7 +17,6 @@ namespace
 		Tag("h4", 1),
 		Tag("h5", 1),
 		Tag("h6", 1),
-		Tag("p", 3)
 	};
 }
 
@@ -27,10 +26,11 @@ public:
 	XmlParser(const std::string& _url, const std::string& _dname = "");
 
 	// getters
-	std::vector<std::string> getKeywords()    const { return kwords; }
-	std::vector<std::string> getUrls()        const { return urls;   }
-	int                      getMark()        const { return mark;   }
-	std::string		 getDomainName()  const { return dname;  }
+	std::vector<std::string> getUrls()         const { return urls;   }
+	int                      getMark()         const { return mark;   }
+	std::string		 getDomainName()   const { return dname;  }
+	std::vector<std::string> getKeywords()	   const { return kwords; }
+	std::vector<std::string> getMetaKeywords() const { return metakwords; }
 
 private:
 	std::string url, dname;
@@ -38,7 +38,7 @@ private:
 	std::vector<std::string> urls;
 	int mark;
 
-	//
+	// Méthodes privées
 	void parseXmlFile(const std::string& _filemane = "");
 	void addNewUrl(const std::string& line);
 	void setMarkOf(const std::string& _url);
