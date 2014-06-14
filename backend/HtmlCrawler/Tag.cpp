@@ -12,7 +12,7 @@ std::string Tag::getName() const
 
 std::string Tag::first() const
 {
-	return "<" + tag + ">";
+	return "<" + tag;
 }
 
 std::string Tag::second() const
