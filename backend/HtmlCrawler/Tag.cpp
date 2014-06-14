@@ -4,6 +4,12 @@ Tag::Tag(std::string _tag, int _mark) : tag(_tag), mark(_mark)
 {
 }
 
+std::string Tag::getName() const
+{
+	return tag;
+}
+
+
 std::string Tag::first() const
 {
 	return "<" + tag + ">";
