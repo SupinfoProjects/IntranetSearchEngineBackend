@@ -3,10 +3,16 @@
 
 int main(int argc, char *argv[])
 {
-	XmlParser p("begeekeveryday.fr");
-	for (auto u : p.getUrls())
+	HtmlCrawler p("begeekeveryday.fr");
+	for (auto u : p.getPages())
 	{
-		std::cout << u << std::endl;
+		std::cout << u.url << std::endl;
+		std::string mk = "";
+		for (auto m : u.metaKeywords)
+		{
+			mk += m + " ";
+		}
+		//std::cout << "META - " << mk << std::endl;
 	}
 	return 0;
 }

@@ -2,12 +2,13 @@
 
 HtmlCrawler::HtmlCrawler(std::string url)
 {
-    crawlWebSite(url); 
+	crawlWebSite(url); 
 }
 
 void HtmlCrawler::crawlWebSite(std::string url)
 {
-    urls.push_back(url);
+   	XmlParser parser(url);
+	urls = parser.getUrls();
     while (urls.size() > 0)
     {
         for (auto url : urls)
@@ -39,5 +40,5 @@ void HtmlCrawler::crawlWebSite(std::string url)
                  }
              }
         }
-    }
+	}    
 }

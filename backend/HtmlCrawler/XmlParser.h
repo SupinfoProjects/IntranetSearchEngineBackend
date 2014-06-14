@@ -26,6 +26,7 @@ public:
 	XmlParser(const std::string& _url, const std::string& _dname = "");
 
 	// getters
+	std::string getTitle() const { return title; }
 	std::vector<std::string> getUrls()         const { return urls;   }
 	int                      getMark()         const { return mark;   }
 	std::string		 getDomainName()   const { return dname;  }
@@ -33,7 +34,7 @@ public:
 	std::vector<std::string> getMetaKeywords() const { return metakwords; }
 
 private:
-	std::string url, dname;
+	std::string url, dname, title;
 	std::vector<std::string> kwords, metakwords;
 	std::vector<std::string> urls;
 	int mark;

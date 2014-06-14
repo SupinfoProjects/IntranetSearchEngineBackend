@@ -7,6 +7,7 @@
 #include <iostream>
 #include <regex>
 #include <string>
+#include <ctime>
 
 XmlParser::XmlParser(const std::string& _url, const std::string& _dname) : url(_url), dname(_dname)
 {
@@ -18,8 +19,14 @@ XmlParser::XmlParser(const std::string& _url, const std::string& _dname) : url(_
 			dname += url[i];
 		}
 	}
-	system("wget url");
-	parseXmlFile("index.html");
+	//system("wget -O index.html url");
+	parseXmlFile(url);
+}
+
+void _pause(int dur)
+{
+	int tmp = time(0) + dur;
+	while (tmp > time(0));
 }
 
 void XmlParser::parseXmlFile(const std::string& _url)
@@ -30,8 +37,9 @@ void XmlParser::parseXmlFile(const std::string& _url)
 	metakwords.clear();
 	mark = 0;
 	// TODO - Décommenter pour Linux
-	system("rm index.html");
-	system(std::string("wget " + url).c_str());
+	//system("rm index.html");
+	system(std::string("wget -O index.html " + url).c_str());
+	_pause(2);
 	std::ifstream stream("index.html");
 	std::string line;
 	if (!stream)
@@ -73,6 +81,7 @@ void XmlParser::parseXmlFile(const std::string& _url)
 		}
 	}
 	setMarkOf(url);
+	system("rm index.html");
 }
 
 void XmlParser::setMarkOf(const std::string& _url)
@@ -98,7 +107,12 @@ void XmlParser::setMarkOf(const std::string& _url)
 				{
 					keyword += sub[i];
 				}
-				kwords.push_back(keyword);
+				if (tag.getName() == "title")
+				{
+					title = keyword;
+				}
+				else
+					kwords.push_back(keyword);
 				mark += tag.getMark();
 			}
 		}
