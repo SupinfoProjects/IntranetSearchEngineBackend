@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\False;
 use wdhif\SEBundle\Form\SearchType;
-use wdhif\SEBundle\Form\SubmitType;
 
 
 class DefaultController extends Controller
@@ -32,6 +31,7 @@ class DefaultController extends Controller
                 var_dump($result);
             }
         }
+
         return array(
             'form' => $form->createView(),
             'error' => !($error == 0),
@@ -44,7 +44,7 @@ class DefaultController extends Controller
     public function resultAction()
     {
         $pages = array();
-        $page = "";
+        $page = "toto";
         for($i=0; $i < 42; $i++){
             $pages[] = $page;
         }
@@ -55,29 +55,5 @@ class DefaultController extends Controller
             $this->get('request')->query->get('limit', 10)/*limit per page*/
         );
         return array("pagination" => $pagination );
-    }
-    /**
-     * @Route("/submit", name="submit")
-     * @Template()
-     */
-    public function submitAction(Request $request)
-    {
-        $error = false;
-        $form = $this->createForm(new SubmitType());
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            // data is an array with "name", "email", and "message" keys
-            $data = $form->get('url')->getData();
-            json_encode($data);
-            exec('SEClient', $url, $error);
-            if (isset($url[0])){
-                $url = json_decode($url[0]);
-                var_dump($url);
-            }
-        }
-        return array(
-            'form' => $form->createView(),
-            'error' => !($error == 0),
-        );
     }
 }
