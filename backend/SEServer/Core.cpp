@@ -15,15 +15,7 @@ int main()
 	}
 	else
 	{
-		bool e = database.Query("INSERT INTO DonneesKeywords VALUES(44)");
-		if (e)
-		{
-			std::cout << "Inserted new test row" << std::endl;
-		}
-		else
-		{
-			std::cout << "Encountered MySQL Error: " << database.LastError() << std::endl;
-		}
+		std::cout << "Connected to database, started listening" << std::endl;
 	}
 	
 	io_service.run();

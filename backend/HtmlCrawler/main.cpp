@@ -12,7 +12,13 @@ int main(int argc, char *argv[])
 //	catch (std::exception& e)
 //	{
 		for (auto page : p.getPages())
-			std::cout << page.url << "mark = " << page.mark << std::endl;
+		{
+			std::string s="";
+		
+			std::cout << "==============================" 
+				<< std::endl <<"title : " << page.title 
+				<< std::endl << page.url << " mark : " << page.mark << std::endl;
+		}
 //		std::cout << e.what() << std::endl;
 //	}
 	//for (auto page : p.getPages())

@@ -20,6 +20,7 @@ void HtmlCrawler::crawlWebSite(std::string url)
             HtmlPage page;
             page.url = url;
 			checkedUrls.push_back(url);
+			page.title = parser.getTitle();
             page.mark = parser.getMark();
             page.urls = parser.getUrls();
             page.metaKeywords = parser.getMetaKeywords();

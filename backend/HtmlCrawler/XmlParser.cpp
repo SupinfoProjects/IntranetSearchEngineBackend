@@ -101,7 +101,12 @@ void XmlParser::setMarkOf(const std::string& _url)
 			if ((first = line.find(tag.first())) != std::string::npos
 				&& (second = line.find(tag.second())) != std::string::npos)
 			{
-				std::string sub = line.substr(first + tag.first().size(), second);
+				int len = 0;	
+				while (line[first + len] != '>')
+				{
+					len++;
+				}
+				std::string sub = line.substr(first + 1 + tag.first().size(), second + 2);
 				std::string keyword;
 				for (int i = 0; i < sub.size() - tag.second().size(); i++)
 				{

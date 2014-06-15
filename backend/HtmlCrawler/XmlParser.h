@@ -17,6 +17,7 @@ namespace
 		Tag("h4", 1),
 		Tag("h5", 1),
 		Tag("h6", 1),
+		Tag("title", 3)
 	};
 }
 

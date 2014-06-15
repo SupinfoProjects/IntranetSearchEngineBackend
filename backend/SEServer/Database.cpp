@@ -106,4 +106,7 @@ bool Database::HasError()
 
 Database::~Database()
 {
+	delete _statement;
+	delete _connection;
+	delete _rset;
 }

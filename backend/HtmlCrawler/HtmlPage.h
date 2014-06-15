@@ -8,8 +8,8 @@
 
 struct HtmlPage
 {
-    HtmlPage() : url(""), mark(-1) {}
-    std::string url;
+    HtmlPage() : url(""), title(""), mark(-1) {}
+    std::string url, title;
     std::vector<std::string> urls;
     std::vector<std::string> metaKeywords;
     int mark;
