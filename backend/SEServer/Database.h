@@ -4,6 +4,8 @@
 #include <cppconn/statement.h>
 #include <cppconn/resultset.h>
 #include <cppconn/exception.h>
+#include <sstream>
+
 class Database
 {
 public:
