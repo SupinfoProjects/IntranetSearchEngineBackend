@@ -6,6 +6,3 @@ Connection::Connection(boost::asio::io_service& io_service)
 }
 
 
-void Connection::handle_write(const boost::system::error_code& error, size_t bytes)
-{
-}

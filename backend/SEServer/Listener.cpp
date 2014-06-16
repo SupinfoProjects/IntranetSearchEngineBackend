@@ -25,9 +25,16 @@ void Listener::StartListen()
 void Listener::HandleAccept(Connection::pointer new_connection,
 	const boost::system::error_code& error)
 {
+	std::cout << "Incoming connection" << std::endl;
 	if (!error)
 	{
+		std::cout << "Starting read" << std::endl;
 		new_connection->start();
+	}
+	else
+	{
+		std::cout << "An error occured" << std::endl;
+		throw boost::system::system_error(error);
 	}
 
 	StartListen();
