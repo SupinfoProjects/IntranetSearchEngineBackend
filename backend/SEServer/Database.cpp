@@ -11,10 +11,8 @@ Database::Database(std::string database, std::string host, std::string user, std
 		std::ostringstream oss;
 		oss << "tcp://" << host << ":" << port;
 		std::string chain = oss.str();
-		std::cout << "Initiating MySQL connection to: " << chain << ";" << user << ";" << password << std::endl;
 		_connection = _driver->connect(chain, user, password);
 		std::string query = "USE " + database;
-		std::cout << query << std::endl;
 		_error = !Query(query);
 		return;
 	}
@@ -34,14 +32,14 @@ sql::ResultSet* Database::Request(std::string Query) // Executes a query and ret
 	try
 	{
 		_statement = _connection->createStatement();
-		bool execute = _statement->executeQuery(Query);
-		if (execute)
+		_rset = _statement->executeQuery(Query);
+		if (_rset != NULL && _rset != nullptr)
 		{
-			_rset = _statement->getResultSet();
 			return _rset;
 		}
 		else
 		{
+			std::cout << "zeub" << std::endl;
 			return nullptr;
 		}
 	}
