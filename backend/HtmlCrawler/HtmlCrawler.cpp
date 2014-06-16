@@ -6,8 +6,7 @@ HtmlCrawler::HtmlCrawler(std::string url)
 	host = url;
 	//urls = std::vector<std::string>();
 	//pages = std::vector<HtmlPages>();
-	std::thread thread(crawlWebSie(url));
-	crawlWebSite(url);
+	std::thread thread(crawlWebSite(url));
 }
 
 void HtmlCrawler::crawlWebSite(std::string url)
