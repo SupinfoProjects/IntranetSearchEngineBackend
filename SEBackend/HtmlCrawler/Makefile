@@ -3,8 +3,8 @@ HtmlCrawler: main.o  HtmlCrawler.o Tag.o XmlParser.o
 	g++ -std=c++0x -o $@ $^
 
 # Création de la lib statique : taper "make lib"
-lib: main.o XmlParser.o Tag.o
-	ar -q XmlParser.a XmlParser.o Tag.o
+lib: main.o XmlParser.o Tag.o HtmlCrawler.o
+	ar -q XmlParser.a XmlParser.o Tag.o HtmlCrawler.o
 
 # Création de main.o
 main.o: main.cpp XmlParser.h

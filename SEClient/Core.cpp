@@ -24,7 +24,7 @@ int main(int argc, char** argv)
 		boost::asio::io_service io_service;
 		boost::system::error_code err;
 		tcp::resolver resolver(io_service);
-		tcp::resolver::query query("localhost", boost::lexical_cast<std::string>(13));
+		tcp::resolver::query query("192.168.1.125", boost::lexical_cast<std::string>(13));
 		tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
 		tcp::socket socket(io_service);
 		boost::asio::connect(socket, endpoint_iterator);

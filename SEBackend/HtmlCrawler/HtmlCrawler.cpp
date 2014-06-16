@@ -7,7 +7,7 @@ HtmlCrawler::HtmlCrawler(std::string url)
 	//urls = std::vector<std::string>();
 	//pages = std::vector<HtmlPages>();
 	//std::thread thread(crawlWebSite(url));
-	crawlWebSite(url);
+	//crawlWebSite(url);
 }
 
 void HtmlCrawler::crawlWebSite(std::string url)
@@ -47,12 +47,13 @@ void HtmlCrawler::crawlWebSite(std::string url)
 						checkedUrls.push_back(url);
 					}*/
 				}	 
-				if (url.find(host) == std::string::npos)
+				if (url.find(host) == std::string::npos
+					)//&& url.find(".png") == std::string::npos)
 				{
 					checked = true;
 					checkedUrls.push_back(url);
 				}
-				if (!checked)
+				if (!checked && url.find(host) != std::string::npos)
 				{
 					urls.push_back(url);
 				}

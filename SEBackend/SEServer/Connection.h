@@ -7,6 +7,7 @@
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/array.hpp>
 #include "Database.h"
+#include "../HtmlCrawler/HtmlCrawler.h"
 
 using boost::asio::ip::tcp;
 
@@ -87,6 +88,18 @@ public:
 		else if(command == "submit")
 		{
 			socket_.close();
+			HtmlCrawler crawler(args[0]);
+			try {
+			crawler.crawlWebSite(args[0]);
+			}
+			catch(std::exception &e)
+			{}
+			for (auto page : crawler.getPages())
+			{
+				std::cout << page.url << std::endl;
+				std::string id = AddURL(page.url, page.mark);
+				AddKeywords(page.metaKeywords, id);
+			}
 		}
 		
 		int length = message.length();
@@ -103,7 +116,7 @@ public:
 private:
 	Connection(boost::asio::io_service& io_service);
 	
-	bool AddURL(std::string back_URL, int back_Note)
+	std::string AddURL(std::string back_URL, int back_Note)
 	{
 		sql::ResultSet* u = database->Request("SELECT Url FROM DonneesUrl WHERE Url='"+ back_URL +"';");
 		if (u != nullptr)
@@ -120,7 +133,9 @@ private:
 			{
 				std::cerr << "Encountered MySQL Error: " << database->LastError() << std::endl;
 			}
-			return true;
+			auto k = database->Request("SELECT ID FROM DonneesUrl");
+			k->next();
+			return k->getString("ID");
 		}
 		else
 		{
@@ -129,7 +144,7 @@ private:
 		}
 	}
 
-	void AddKeywords(std::list<std::string> back_Keywords, std::string back_urlID)
+	void AddKeywords(std::vector<std::string> back_Keywords, std::string back_urlID)
 	{
 		for(auto key : back_Keywords)
 		{

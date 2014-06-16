@@ -1,7 +1,7 @@
 CC=g++
 INCDIRS= -I../../boost_1_55_0 -I../../include
 LIBDIRS= -L../../boost_1_55_0/stage/lib -L../../lib -L/usr/lib/x86_64-linux-gnu
-LIBS= ../../boost_1_55_0/stage/lib/libboost_system.a ../../lib/libmysqlcppconn-static.a -Wl,-Bdynamic -lmysqlclient 
+LIBS= ../HtmlCrawler/XmlParser.a ../../boost_1_55_0/stage/lib/libboost_system.a ../../lib/libmysqlcppconn-static.a -Wl,-Bdynamic -lmysqlclient 
 LDFLAGS= $(LIBDIRS)
 CFLAGS= -std=c++0x -DMYSQL_CLIENT_NO_THREADS -Wall $(INCDIRS)
 SOURCES=Database.cpp Connection.cpp Listener.cpp Sender.cpp Core.cpp
