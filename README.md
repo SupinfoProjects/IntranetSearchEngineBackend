@@ -1,5 +1,8 @@
 SearchEngineB2
 ==============
+
+Web part of this project : https://github.com/wdhif/IntranetSearchEngineWeb
+
 A B2 End Year Project.
 
 Création d'un SearchEngine (SE) qui permet aux compagnie et aux individus de protegé leur vie privée
